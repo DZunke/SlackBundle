@@ -12,7 +12,14 @@
     $client = new Client($connection);
     $client->addIdentity($identity);
 
-    $client->send(Client\Actions::ACTION_POST_MESSAGE, ['channel' => '#slack-testing', 'text' => 'TEST'], 'Testuser');
+    $client->send(
+        Client\Actions::ACTION_POST_MESSAGE,
+        [
+            'channel' => '#slack-testing',
+            'text' => 'TEST'
+        ],
+        'Testuser'
+    );
 
 ## License
 
