@@ -1,0 +1,30 @@
+{
+    "name": "dzunke/slack-bundle",
+    "description": "SlackBundle for Symfony2 with Guzzle-Integration",
+    "keywords": ["symfony2", "symfony2-bundle", "slack", "slack-integration"],
+    "homepage": "https://github.com/DZunke/SlackBundle",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Denis Zunke",
+            "email": "denis.zunke@gmail.com"
+        }
+    ],
+    "archive": {
+        "exclude": ["/Tests"]
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "guzzle/guzzle": "3.9.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "target-dir": "DZunke/SlackBundle"
+}
