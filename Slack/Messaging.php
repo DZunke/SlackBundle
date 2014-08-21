@@ -20,6 +20,14 @@ class Messaging
     }
 
     /**
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
      * @param string $channel
      * @param string $message
      * @param string $identity

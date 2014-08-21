@@ -27,17 +27,30 @@ class IdentityBag
             $identObj->setIconEmoji((isset($identity['icon-emoji']) ? $identity['icon-emoji'] : null));
             $identObj->setIconEmoji((isset($identity['icon-url']) ? $identity['icon-url'] : null));
 
-            $this->addIdentity($identObj);
+            $this->add($identObj);
         }
 
         return $this;
     }
 
     /**
+     * @param string $username
+     * @return bool
+     */
+    public function has($username)
+    {
+        if (array_key_exists($username, $this->identities)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @param Identity $identity
      * @return $this
      */
-    public function addIdentity(Identity $identity)
+    public function add(Identity $identity)
     {
         $this->identities[$identity->getUsername()] = $identity;
 
@@ -49,7 +62,7 @@ class IdentityBag
      * @return Identity
      * @throws \Exception
      */
-    public function getIdentity($username)
+    public function get($username)
     {
         if (!isset($this->identities[$username])) {
             throw new \Exception('identity "' . $username . '" does not exists');

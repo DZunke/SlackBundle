@@ -2,6 +2,20 @@
 
 The Bundle will integrate [Slack](https://slack.com/) Team-Communication-Software into your Symfony2 Project. 
 
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Symfony SlackBundle](#user-content-symfony-slackbundle)
+	- [Install](#user-content-install)
+	- [Basic-Usage](#user-content-basic-usage)
+	- [Symfony](#user-content-symfony)
+		- [Configuration](#user-content-configuration)
+		- [Use Client-Service in Controller](#user-content-use-client-service-in-controller)
+		- [Available Services for direct usage](#user-content-available-services-for-direct-usage)
+	- [Slack Help](#user-content-slack-help)
+		- [Formatting Messages](#user-content-formatting-messages)
+		- [Notifications](#user-content-notifications)
+	- [License](#user-content-license)
+
 ## Install
 
 Add the Bundle to the composer.json by running
@@ -88,6 +102,30 @@ $response = $container->get('dz.slack.messaging')->message(
     'Good Morning, please make sure u got a coffee before working!',
     'CoffeeBrewer'
 );
+```
+
+### Monolog Handler
+
+First is to Create a Custom Handler-Service
+
+``` yaml
+# app/config.yml
+services:
+    my_custom_handler:
+        class: DZunke\SlackBundle\Monolog\Handler\SlackHandler
+        # 400 = ERROR, see Monolog::Logger for the values of log levels
+        arguments: [@dz.slack.messaging, "#slack-testing", "Bazuser", 400]
+```
+
+Second is to give the Handler to the Monolog Configuration
+
+``` yaml
+# app/config.yml
+monolog:
+    handlers:
+        slack:
+            type: service
+            id: my_custom_handler
 ```
 
 ## Slack Help

@@ -43,6 +43,14 @@ class Client
     }
 
     /**
+     * @return IdentityBag
+     */
+    public function getIdentityBag()
+    {
+        return $this->identityBag;
+    }
+
+    /**
      * @param string $action
      * @param array  $parameter
      * @param null   $identity
@@ -51,7 +59,7 @@ class Client
     public function send($action, array $parameter, $identity = null)
     {
         if (!is_null($identity) && is_string($identity)) {
-            $identity = $this->identityBag->getIdentity($identity);
+            $identity = $this->identityBag->get($identity);
         }
 
         $action = Actions::loadClass($action);
