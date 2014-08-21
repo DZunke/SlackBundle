@@ -5,6 +5,7 @@ namespace DZunke\SlackBundle\Slack;
 use DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Client\Connection;
 use DZunke\SlackBundle\Slack\Client\Identity;
+use DZunke\SlackBundle\Slack\Client\Response;
 use Guzzle\Http\Client as GuzzleClient;
 use Guzzle\Http\Url;
 
@@ -79,6 +80,6 @@ class Client
         $guzzle   = new GuzzleClient();
         $response = $guzzle->createRequest('GET', $url)->send();
 
-        return $response;
+        return Response::parseGuzzleResponse($response);
     }
 }
