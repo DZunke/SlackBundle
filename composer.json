@@ -22,9 +22,7 @@
         "phpunit/phpunit": "4.*"
     },
     "autoload": {
-        "psr-0": {
-            "": "src/"
-        }
+        "psr-0": { "DZunke\\SlackBundle": "" }
     },
     "target-dir": "DZunke/SlackBundle"
 }
