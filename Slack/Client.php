@@ -46,7 +46,7 @@ class Client
      * @param string $action
      * @param array  $parameter
      * @param null   $identity
-     * @return \Guzzle\Http\Message\Response
+     * @return Response
      */
     public function send($action, array $parameter, $identity = null)
     {

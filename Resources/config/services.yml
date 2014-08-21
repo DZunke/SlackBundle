@@ -11,3 +11,7 @@ services:
         arguments: [@dz.slack.connection]
         calls:
             - [setIdentityBag, [@dz.slack.identity_bag]]
+
+    dz.slack.messaging:
+        class: DZunke\SlackBundle\Slack\Messaging
+        arguments: [@dz.slack.client]

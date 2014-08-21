@@ -1,4 +1,6 @@
-# Symfony SlackBundle - Full Slack Integration
+# Symfony SlackBundle
+
+The Bundle will integrate [Slack](https://slack.com/) Team-Communication-Software into your Symfony2 Project. 
 
 ## Install
 
@@ -75,6 +77,35 @@ public function messageAction()
     );
 }
 ```
+
+### Available Services for direct usage
+
+**Messaging-Service** - Sending Messages to Channel, Group or User.
+
+``` php
+$response = $container->get('dz.slack.messaging')->message(
+    '#slack-testing',
+    'Good Morning, please make sure u got a coffee before working!',
+    'CoffeeBrewer'
+);
+```
+
+## Slack Help
+
+### Formatting Messages
+
+There are some useful help for how you can format messages. 
+
+  * [Enabled Markdown](https://slack.zendesk.com/hc/en-us/articles/202288908-How-can-I-add-formatting-to-my-messages-)
+  * [Emoji Cheat Sheet](http://www.emoji-cheat-sheet.com/)
+
+### Notifications
+
+To call Notifications for a User. First it must be enabled for the User. There are some Ways to notify:
+
+ * Message: _"Foo @everyone Bar"_, will notify everyone in at the Network. Must be Used on the #general Channel
+ * Message: _"Foo @channel Bar"_, will notify everyone in a Channel
+ * Message: _"Foo @Bazuser Bar"_, will notify the named User
 
 ## License
 
