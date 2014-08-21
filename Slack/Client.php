@@ -29,11 +29,19 @@ class Client
         $this->connection = $connection;
     }
 
+    /**
+     * @param Identity $identity
+     */
     public function addIdentity(Identity $identity)
     {
         $this->identities[$identity->getUsername()] = $identity;
     }
 
+    /**
+     * @param string $username
+     * @return Identity
+     * @throws \Exception
+     */
     public function getIdentity($username)
     {
         if (!isset($this->identities[$username])) {

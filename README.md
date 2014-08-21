@@ -1,5 +1,23 @@
 # Symfony SlackBundle - Full Slack Integration
 
+## Install
+
+Add the Bundle to the composer.json by running
+
+    php composer.phar require dzunke/slack-bundle:dev-master
+
+To enable upcoming Symfony-Features install the Bundle at Symfony's AppKernel
+
+``` php
+public function registerBundles()
+{
+    $bundles = [
+        // [..]
+        new DZunke\SlackBundle\DZunkeSlackBundle(),
+    ];
+}
+```
+
 ## Basic-Usage
 
 ``` php
