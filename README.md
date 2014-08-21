@@ -2,19 +2,17 @@
 
 The Bundle will integrate [Slack](https://slack.com/) Team-Communication-Software into your Symfony2 Project. 
 
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
-
-- [Symfony SlackBundle](#user-content-symfony-slackbundle)
-	- [Install](#user-content-install)
-	- [Basic-Usage](#user-content-basic-usage)
-	- [Symfony](#user-content-symfony)
-		- [Configuration](#user-content-configuration)
-		- [Use Client-Service in Controller](#user-content-use-client-service-in-controller)
-		- [Available Services for direct usage](#user-content-available-services-for-direct-usage)
-	- [Slack Help](#user-content-slack-help)
-		- [Formatting Messages](#user-content-formatting-messages)
-		- [Notifications](#user-content-notifications)
-	- [License](#user-content-license)
+- [Install](#user-content-install)
+- [Basic-Usage](#user-content-basic-usage)
+- [Symfony](#user-content-symfony)
+  - [Configuration](#user-content-configuration)
+  - [Use Client-Service in Controller](#user-content-use-client-service-in-controller)
+  - [Available Services for direct usage](#user-content-available-services-for-direct-usage)
+  - [Monolog Handler](#user-content-monolog-handler)
+- [Slack Help](#user-content-slack-help)
+  - [Formatting Messages](#user-content-formatting-messages)
+  - [Notifications](#user-content-notifications)
+- [License](#user-content-license)
 
 ## Install
 
