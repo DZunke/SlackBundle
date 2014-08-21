@@ -21,24 +21,59 @@ public function registerBundles()
 ## Basic-Usage
 
 ``` php
-$identity = new Identity();
-$identity->setUsername('Testuser');
+$identity = new \DZunke\SlackBundle\Slack\Client\Identity();
+$identity->setUsername('CoffeeBrewer');
+$identity->setIconEmoji(':coffee:');
 
-$connection = new Connection();
+$identityBag = new \DZunke\SlackBundle\Slack\Client\IdentityBag();
+$identityBag->addIdentity($identity);
+
+$connection = new \DZunke\SlackBundle\Slack\Client\Connection();
 $connection->setEndpoint('slack.com/api/');
-$connection->setToken('##API-KEY##');
+$connection->setToken('YOUR API TOKEN5');
 
-$client = new Client($connection);
-$client->addIdentity($identity);
+$client = new \DZunke\SlackBundle\Slack\Client($connection);
+$client->setIdentityBag($identityBag);
 
-$client->send(
-    Client\Actions::ACTION_POST_MESSAGE,
+$response = $client->send(
+    \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
     [
         'channel' => '#slack-testing',
-        'text' => 'TEST'
+        'text'    => 'Good Morning, please make sure u got a coffee before working!'
     ],
-    'Testuser'
+    'CoffeeBrewer'
 );
+```
+
+## Symfony
+
+### Configuration
+
+``` yaml
+# app/config.yml
+d_zunke_slack:
+    token: "YOUR API TOKEN"
+    identities:
+        CoffeeBrewer:
+            icon_emoji: ":coffee:"
+```
+
+### Use Client-Service in Controller
+
+``` php
+# AcmeBundle/IndexController.php
+public function messageAction()
+{
+    $client   = $this->get('dz.slack.client');
+    $response = $client->send(
+        \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
+        [
+            'channel' => '#slack-testing',
+            'text'    => 'Good Morning, please make sure u got a coffee before working!'
+        ],
+        'CoffeeBrewer'
+    );
+}
 ```
 
 ## License

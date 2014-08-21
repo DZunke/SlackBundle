@@ -1,0 +1,13 @@
+services:
+
+    dz.slack.identity_bag:
+        class: DZunke\SlackBundle\Slack\Client\IdentityBag
+
+    dz.slack.connection:
+        class: DZunke\SlackBundle\Slack\Client\Connection
+
+    dz.slack.client:
+        class: DZunke\SlackBundle\Slack\Client
+        arguments: [@dz.slack.connection]
+        calls:
+            - [setIdentityBag, [@dz.slack.identity_bag]]

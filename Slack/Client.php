@@ -4,7 +4,7 @@ namespace DZunke\SlackBundle\Slack;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Client\Connection;
-use DZunke\SlackBundle\Slack\Client\Identity;
+use DZunke\SlackBundle\Slack\Client\IdentityBag;
 use DZunke\SlackBundle\Slack\Client\Response;
 use Guzzle\Common\Event;
 use Guzzle\Http\Client as GuzzleClient;
@@ -19,9 +19,9 @@ class Client
     protected $connection;
 
     /**
-     * @var Identity[]
+     * @var IdentityBag
      */
-    protected $identities;
+    protected $identityBag;
 
     /**
      * @param Connection $connection
@@ -32,25 +32,14 @@ class Client
     }
 
     /**
-     * @param Identity $identity
+     * @param IdentityBag $identityBag
+     * @return $this
      */
-    public function addIdentity(Identity $identity)
+    public function setIdentityBag(IdentityBag $identityBag)
     {
-        $this->identities[$identity->getUsername()] = $identity;
-    }
+        $this->identityBag = $identityBag;
 
-    /**
-     * @param string $username
-     * @return Identity
-     * @throws \Exception
-     */
-    public function getIdentity($username)
-    {
-        if (!isset($this->identities[$username])) {
-            throw new \Exception('Identity "' . $username . '" does not exists');
-        }
-
-        return $this->identities[$username];
+        return $this;
     }
 
     /**
@@ -62,7 +51,7 @@ class Client
     public function send($action, array $parameter, $identity = null)
     {
         if (!is_null($identity) && is_string($identity)) {
-            $identity = $this->getIdentity($identity);
+            $identity = $this->identityBag->getIdentity($identity);
         }
 
         $action = Actions::loadClass($action);
