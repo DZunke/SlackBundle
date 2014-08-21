@@ -72,7 +72,7 @@ class Response
         $response = new self();
 
         if ($guzzleResponse->getStatusCode() != 200) {
-            $response->setStatus('error');
+            $response->setStatus(false);
             $response->setError($response::ERROR_REQUEST_ERROR);
 
             return $response;
