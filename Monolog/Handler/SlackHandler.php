@@ -48,7 +48,7 @@ class SlackHandler extends AbstractProcessingHandler
 
     protected function write(array $record)
     {
-        var_dump($this->messagingClient->message($this->channel, $record["formatted"], $this->username));
+        $this->messagingClient->message($this->channel, $record["formatted"], $this->username);
     }
 
     /**
