@@ -24,8 +24,8 @@ class IdentityBag
         foreach ($identity as $username => $config) {
             $identObj = new Identity();
             $identObj->setUsername($username);
-            $identObj->setIconEmoji((isset($identity['icon-emoji']) ? $identity['icon-emoji'] : null));
-            $identObj->setIconEmoji((isset($identity['icon-url']) ? $identity['icon-url'] : null));
+            $identObj->setIconEmoji((isset($config['icon_emoji']) ? $config['icon_emoji'] : null));
+            $identObj->setIconUrl((isset($config['icon_url']) ? $config['icon_url'] : null));
 
             $this->add($identObj);
         }
