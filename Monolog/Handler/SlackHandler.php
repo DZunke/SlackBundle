@@ -2,7 +2,6 @@
 
 namespace DZunke\SlackBundle\Monolog\Handler;
 
-use DZunke\SlackBundle\Slack\Client;
 use DZunke\SlackBundle\Slack\Messaging;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\AbstractProcessingHandler;

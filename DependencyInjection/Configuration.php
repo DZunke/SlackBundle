@@ -17,8 +17,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode    = $treeBuilder->root('d_zunke_slack');
         $rootNode->children()
-            ->scalarNode('endpoint')->defaultValue('slack.com/api/')->end()
-            ->scalarNode('token')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('endpoint')
+                ->defaultValue('slack.com/api/')
+            ->end()
+            ->scalarNode('token')
+                ->isRequired()
+                ->defaultNull()
+                ->cannotBeEmpty()
+            ->end()
         ->end();
 
         $rootNode->append($this->addIdentities());
@@ -36,15 +42,22 @@ class Configuration implements ConfigurationInterface
 
         /** @var $connectionNode ArrayNodeDefinition */
         $microservicesNode = $node->requiresAtLeastOneElement()
-            ->useAttributeAsKey('name')
+            ->useAttributeAsKey('username')
             ->cannotBeEmpty()
+            ->info('Usernames to use for Communication inside the Messaging')
             ->prototype('array');
 
 
         $microservicesNode
             ->children()
-            ->scalarNode('icon_url')->defaultNull()->end()
-            ->scalarNode('icon_emoji')->defaultNull()->end()
+                ->scalarNode('icon_url')
+                    ->defaultNull()
+                    ->info('An Url to a specific picture to use as Icon')
+                ->end()
+                ->scalarNode('icon_emoji')
+                    ->defaultNull()
+                    ->info('The Icon to use from an emoji like :smile:')
+                ->end()
             ->end();
 
         return $node;
