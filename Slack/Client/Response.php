@@ -2,6 +2,8 @@
 
 namespace DZunke\SlackBundle\Slack\Client;
 
+use DZunke\SlackBundle\Slack\Client\Actions\ActionsInterface;
+
 class Response
 {
     const ERROR_REQUEST_ERROR = 'request_error';
@@ -24,6 +26,11 @@ class Response
      * @var string
      */
     protected $error;
+
+    /**
+     * @var array
+     */
+    protected $data = [];
 
     /**
      * @param bool $status
@@ -64,10 +71,30 @@ class Response
     }
 
     /**
+     * @param array $data
+     * @return $this
+     */
+    public function setData(array $data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
      * @param \Guzzle\Http\Message\Response $guzzleResponse
+     * @param ActionsInterface              $action
      * @return Response
      */
-    public static function parseGuzzleResponse(\Guzzle\Http\Message\Response $guzzleResponse)
+    public static function parseGuzzleResponse(\Guzzle\Http\Message\Response $guzzleResponse, ActionsInterface $action)
     {
         $response = new self();
 
@@ -87,6 +114,8 @@ class Response
 
             return $response;
         }
+
+        $response->setData($action->parseResponse($responseArray));
 
         return $response;
     }

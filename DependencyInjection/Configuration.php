@@ -43,8 +43,8 @@ class Configuration implements ConfigurationInterface
 
         $microservicesNode
             ->children()
-            ->scalarNode('icon_url')->end()
-            ->scalarNode('icon_emoji')->end()
+            ->scalarNode('icon_url')->defaultNull()->end()
+            ->scalarNode('icon_emoji')->defaultNull()->end()
             ->end();
 
         return $node;

@@ -58,12 +58,14 @@ class Client
      */
     public function send($action, array $parameter, $identity = null)
     {
-        if (!is_null($identity) && is_string($identity)) {
+        if (!is_null($identity) && is_string($identity) && $this->identityBag->has($identity)) {
             $identity = $this->identityBag->get($identity);
         }
 
         $action = Actions::loadClass($action);
-        $action->setIdentity($identity);
+        if (!is_null($identity)) {
+            $action->setIdentity($identity);
+        }
         $action->setParameter($parameter);
 
         $url      = $this->buildRequestUrl(
@@ -75,7 +77,7 @@ class Client
         );
         $response = $this->executeRequest($url);
 
-        return Response::parseGuzzleResponse($response);
+        return Response::parseGuzzleResponse($response, $action);
     }
 
     /**

@@ -9,6 +9,7 @@ The Bundle will integrate [Slack](https://slack.com/) Team-Communication-Softwar
   - [Use Client-Service in Controller](#user-content-use-client-service-in-controller)
   - [Available Services for direct usage](#user-content-available-services-for-direct-usage)
   - [Monolog Handler](#user-content-monolog-handler)
+  - [Available Commands](#user-content-available-commands)
 - [Slack Help](#user-content-slack-help)
   - [Formatting Messages](#user-content-formatting-messages)
   - [Notifications](#user-content-notifications)
@@ -125,6 +126,12 @@ monolog:
             type: service
             id: my_custom_handler
 ```
+
+### Available Commands
+
+Output of Debug Informations like Connection, Identities, Channels etc.
+
+    php app/console dzunke:slack:debug
 
 ## Slack Help
 
