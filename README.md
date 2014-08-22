@@ -132,6 +132,11 @@ monolog:
 Output of Debug Informations like Connection, Identities, Channels etc.
 
     php app/console dzunke:slack:debug
+    
+Sending a Message directly from Console
+
+    php app/console dzunke:slack:message @fooUser BazUser "Lorem ipsum dolor sit amet .."
+    php app/console dzunke:slack:message "#FooChannel" BazUser "Lorem ipsum dolor sit amet .."
 
 ## Slack Help
 
