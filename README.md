@@ -13,6 +13,8 @@ The Bundle will integrate [Slack](https://slack.com/) Team-Communication-Softwar
 - [Slack Help](#user-content-slack-help)
   - [Formatting Messages](#user-content-formatting-messages)
   - [Notifications](#user-content-notifications)
+  - [Token](#user-content-token)
+- [Roadmap](#user-content-roadmap)
 - [License](#user-content-license)
 
 ## Install
@@ -154,6 +156,26 @@ To call Notifications for a User. First it must be enabled for the User. There a
  * Message: _"Foo @everyone Bar"_, will notify everyone in at the Network. Must be Used on the #general Channel
  * Message: _"Foo @channel Bar"_, will notify everyone in a Channel
  * Message: _"Foo @Bazuser Bar"_, will notify the named User
+
+### Token
+
+To get your Token you need to be logged in into the Slack-System and visit the [API-Page](https://api.slack.com/). There is a headline "Authentication" where your Team should be listet with the possibility to get a Token.
+
+## Roadmap
+
+To say the project has an stable state there are a bunch of features to implement. 
+
+  * Auth-Test to the DebugCommand
+  * Catching the [Rate Limits](https://api.slack.com/docs/rate-limits) of the API and try again for a bunch of tries
+  * Write Topic of a Channel
+  * Update ChatMessage for ProgressBars etc.
+  * Upload File for automatic Reportings
+
+There are a bunch of additional Features to integrate later:
+
+  * Reading E-Mails from an Account (maybe olny for slack-client)
+  * Sending E-Mails for daily reports of team members in an channel and post the awnsers
+  * Connectors for extern Tools to fetch Data and post them (maybe with a cache to only get updated content)
 
 ## License
 
