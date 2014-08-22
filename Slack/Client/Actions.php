@@ -12,10 +12,22 @@ class Actions
     const ACTION_POST_MESSAGE = 'chat.postMessage';
 
     /**
+     * Action is used to list all available Channels
+     */
+    const ACTION_CHANNELS_LIST = 'channels.list';
+
+    /**
+     * Is used to Check if the Connection is valid
+     */
+    const ACTION_API_TEST = 'api.test';
+
+    /**
      * @var array
      */
     protected static $classes = [
-        self::ACTION_POST_MESSAGE => 'PostMessage'
+        self::ACTION_POST_MESSAGE  => 'PostMessage',
+        self::ACTION_CHANNELS_LIST => 'ChannelsList',
+        self::ACTION_API_TEST      => 'ApiTest'
     ];
 
     /**

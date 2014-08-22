@@ -13,16 +13,16 @@ interface ActionsInterface
     public function getRenderedRequestParams();
 
     /**
+     * @param array $response
+     * @return array
+     */
+    public function parseResponse(array $response);
+
+    /**
      * @param Identity $config
      * @return $this
      */
     public function setIdentity(Identity $config);
-
-    /**
-     * @return bool
-     * @throws \Exception
-     */
-    public function validate();
 
     /**
      * @return string
