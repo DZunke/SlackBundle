@@ -2,7 +2,6 @@
 
 There are a bunch of Features to be done before the first stable Version will be released.
 
-* Write Topic of a Channel
 * Update ChatMessage for ProgressBars etc.
 * Upload File for automatic Reportings
 
