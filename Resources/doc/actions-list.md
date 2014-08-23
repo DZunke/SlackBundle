@@ -43,3 +43,15 @@ Available Parameters:
 ``` php
 protected $parameter = [];
 ```
+
+## auth.test
+
+[Slack Documentation](https://api.slack.com/methods/auth.test)
+
+Constant: \DZunke\SlackBundle\Slack\Client::ACTION_AUTH_TEST
+
+Available Parameters:
+
+``` php
+protected $parameter = [];
+```

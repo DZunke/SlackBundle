@@ -68,16 +68,32 @@ class Client
         }
         $action->setParameter($parameter);
 
-        $url      = $this->buildRequestUrl(
+        $url = $this->buildRequestUrl(
             $action,
             array_merge(
                 ['token' => $this->connection->getToken()],
                 $action->getRenderedRequestParams()
             )
         );
-        $response = $this->executeRequest($url);
 
-        return Response::parseGuzzleResponse($response, $action);
+        $tries = 1;
+        do {
+            $response = $this->executeRequest($url);
+            $response = Response::parseGuzzleResponse($response, $action);
+
+            if (
+                $response->getStatus() === true ||
+                ($response->getStatus() == false && $response->getError() != Response::ERROR_RATE_LIMITED)
+            ) {
+                break;
+            }
+
+            ++$tries;
+
+        } while ($tries <= $this->connection->getLimitRetries());
+
+
+        return $response;
     }
 
     /**

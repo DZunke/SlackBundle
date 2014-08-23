@@ -25,6 +25,11 @@ class Configuration implements ConfigurationInterface
                 ->defaultNull()
                 ->cannotBeEmpty()
             ->end()
+            ->integerNode('limit_retries')
+                ->defaultValue(3)
+                ->cannotBeEmpty()
+                ->info('The amount of retries for the connection if the Rate Limits of Slack are reached')
+            ->end()
         ->end();
 
         $rootNode->append($this->addIdentities());

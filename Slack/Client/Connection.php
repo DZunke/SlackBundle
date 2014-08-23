@@ -15,6 +15,11 @@ class Connection
     protected $token;
 
     /**
+     * @var int
+     */
+    protected $limitRetries = 3;
+
+    /**
      * @param string $endpoint
      * @return $this
      */
@@ -52,4 +57,22 @@ class Connection
         return $this->token;
     }
 
+    /**
+     * @param int $retries
+     * @return $this
+     */
+    public function setLimitRetries($retries)
+    {
+        $this->limitRetries = (int)$retries;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLimitRetries()
+    {
+        return $this->limitRetries;
+    }
 }

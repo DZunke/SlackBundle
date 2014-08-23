@@ -2,7 +2,6 @@
 
 There are a bunch of Features to be done before the first stable Version will be released.
 
-* Catching the [Rate Limits](https://api.slack.com/docs/rate-limits) of the API and try again for a bunch of tries
 * Write Topic of a Channel
 * Update ChatMessage for ProgressBars etc.
 * Upload File for automatic Reportings
