@@ -27,4 +27,4 @@ To call Notifications for a User. First it must be enabled for the User. There a
 Officially the Slack-API has a [Rate Limit](https://api.slack.com/docs/rate-limits) for Requests. The API only allows
 one Request per Second. For short times the API will ignore if you get over this limit but maybe there comes a time
 the API will give an Error for this. In this Case the Client will automatically try it for two more times. If you want
-to raise this loop of tries you can change it in the [Configuration](configuraton.md).
+to raise this loop of tries you can change it in the [Configuration](configuration.md).
