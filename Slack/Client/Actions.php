@@ -22,12 +22,18 @@ class Actions
     const ACTION_API_TEST = 'api.test';
 
     /**
+     * Testing the given Token and tells the user of the token
+     */
+    const ACTION_AUTH_TEST = 'auth.test';
+
+    /**
      * @var array
      */
     protected static $classes = [
         self::ACTION_POST_MESSAGE  => 'PostMessage',
         self::ACTION_CHANNELS_LIST => 'ChannelsList',
-        self::ACTION_API_TEST      => 'ApiTest'
+        self::ACTION_API_TEST      => 'ApiTest',
+        self::ACTION_AUTH_TEST     => 'AuthTest'
     ];
 
     /**

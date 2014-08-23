@@ -62,6 +62,7 @@ class DebugCommand extends ContainerAwareCommand
 
         if ($channels->getStatus() == false) {
             $this->output->writeln('<error>' . $channels->getError() . '</error>');
+
             return;
         }
 
@@ -133,22 +134,45 @@ class DebugCommand extends ContainerAwareCommand
         $table->addRow(['endpoint', $config['endpoint']]);
         $table->addRow(['token', $config['token']]);
 
+        $table->addRow(new TableSeparator());
+        $table->addRow(['ConnectionStatus', $this->connectionTest()]);
+        $table->addRow(['Authorization', $this->authTest()]);
+
+        $table->render();
+    }
+
+    protected function connectionTest()
+    {
         $connectionTest = $this->client->send(
             Client\Actions::ACTION_API_TEST,
             [],
             null
         );
 
-        $table->addRow(new TableSeparator());
-
         if ($connectionTest->getStatus()) {
             $statusMessage = '<info>Ok</info>';
         } else {
             $statusMessage = '<error>' . $connectionTest->getError() . '</error>';
         }
-        $table->addRow(['ConnectionStatus', $statusMessage]);
 
-        $table->render();
+        return $statusMessage;
+    }
+
+    protected function authTest()
+    {
+        $authTest = $this->client->send(
+            Client\Actions::ACTION_AUTH_TEST,
+            [],
+            null
+        );
+
+        if ($authTest->getStatus()) {
+            $statusMessage = '<info>Ok - User: ' . $authTest->getData()['user'] . '</info>';
+        } else {
+            $statusMessage = '<error>' . $authTest->getError() . '</error>';
+        }
+
+        return $statusMessage;
     }
 
 }

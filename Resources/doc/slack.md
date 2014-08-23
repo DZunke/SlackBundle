@@ -2,7 +2,10 @@
 
 ## Token
 
-To get your Token you need to be logged in into the Slack-System and visit the [API-Page](https://api.slack.com/). There is a headline "Authentication" where your Team should be listet with the possibility to get a Token.
+To get your Token you need to be logged in into the Slack-System and visit the [API-Page](https://api.slack.com/).
+There is a headline "Authentication" where your Team should be listet with the possibility to get a Token.
+
+**Note:** The API-Token is linked to the user who redeems it. Maybe there should be a "System"-User in your Team for this purposes.
 
 ## Formatting Messages
 
