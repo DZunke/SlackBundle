@@ -69,23 +69,17 @@ class DebugCommand extends ContainerAwareCommand
         $table = new Table($this->output);
 
         $index = 0;
-        foreach ($channels->getData() as $channel) {
+        foreach ($channels->getData() as $name => $channel) {
 
             if ($index > 0) {
                 $table->addRow(new TableSeparator());
             }
 
-            $table->addRow(['<info>' . $channel['name'] . '</info>']);
+            $table->addRow(['<info>' . $name . '</info>']);
             $table->addRow(
                 [
                     '  id',
                     $channel['id']
-                ]
-            );
-            $table->addRow(
-                [
-                    '  members',
-                    $channel['num_members']
                 ]
             );
 

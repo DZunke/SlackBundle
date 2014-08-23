@@ -5,14 +5,15 @@ namespace DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Client\Identity;
 
-class ChannelsList implements ActionsInterface
+class ChannelsSetTopic implements ActionsInterface
 {
 
     /**
      * @var array
      */
     protected $parameter = [
-        'exclude_archived' => 1
+        'channel' => null,
+        'topic'   => null
     ];
 
     /**
@@ -52,7 +53,7 @@ class ChannelsList implements ActionsInterface
      */
     public function getAction()
     {
-        return Actions::ACTION_CHANNELS_LIST;
+        return Actions::ACTION_CHANNELS_SET_TOPIC;
     }
 
     /**
@@ -61,15 +62,6 @@ class ChannelsList implements ActionsInterface
      */
     public function parseResponse(array $response)
     {
-        $channels = [];
-        foreach ($response['channels'] as $channel) {
-            $channels[$channel['name']] = [
-                'id'     => $channel['id'],
-                'active' => $channel['is_archived'],
-                'topic'  => $channel['topic']['value'],
-            ];
-        }
-
-        return $channels;
+        return [];
     }
 }

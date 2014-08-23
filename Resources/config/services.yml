@@ -15,3 +15,7 @@ services:
     dz.slack.messaging:
         class: DZunke\SlackBundle\Slack\Messaging
         arguments: [@dz.slack.client]
+
+    dz.slack.channels:
+        class: DZunke\SlackBundle\Slack\Channels
+        arguments: [@dz.slack.client]

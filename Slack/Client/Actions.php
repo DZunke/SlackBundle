@@ -6,34 +6,23 @@ use DZunke\SlackBundle\Slack\Client\Actions\ActionsInterface;
 
 class Actions
 {
-    /**
-     * Describes the Action that must be called to send a message to a Channel
-     */
-    const ACTION_POST_MESSAGE = 'chat.postMessage';
-
-    /**
-     * Action is used to list all available Channels
-     */
-    const ACTION_CHANNELS_LIST = 'channels.list';
-
-    /**
-     * Is used to Check if the Connection is valid
-     */
-    const ACTION_API_TEST = 'api.test';
-
-    /**
-     * Testing the given Token and tells the user of the token
-     */
-    const ACTION_AUTH_TEST = 'auth.test';
+    const ACTION_POST_MESSAGE       = 'chat.postMessage';
+    const ACTION_CHANNELS_LIST      = 'channels.list';
+    const ACTION_API_TEST           = 'api.test';
+    const ACTION_AUTH_TEST          = 'auth.test';
+    const ACTION_CHANNELS_SET_TOPIC = 'channels.setTopic';
+    const ACTION_CHANNELS_INFO      = 'channels.info';
 
     /**
      * @var array
      */
     protected static $classes = [
-        self::ACTION_POST_MESSAGE  => 'PostMessage',
-        self::ACTION_CHANNELS_LIST => 'ChannelsList',
-        self::ACTION_API_TEST      => 'ApiTest',
-        self::ACTION_AUTH_TEST     => 'AuthTest'
+        self::ACTION_POST_MESSAGE       => 'PostMessage',
+        self::ACTION_CHANNELS_LIST      => 'ChannelsList',
+        self::ACTION_API_TEST           => 'ApiTest',
+        self::ACTION_AUTH_TEST          => 'AuthTest',
+        self::ACTION_CHANNELS_SET_TOPIC => 'ChannelsSetTopic',
+        self::ACTION_CHANNELS_INFO      => 'ChannelsInfo'
     ];
 
     /**
