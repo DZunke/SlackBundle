@@ -17,7 +17,7 @@ class Actions
      * @var array
      */
     protected static $classes = [
-        self::ACTION_POST_MESSAGE       => 'PostMessage',
+        self::ACTION_POST_MESSAGE       => 'ChatPostMessage',
         self::ACTION_CHANNELS_LIST      => 'ChannelsList',
         self::ACTION_API_TEST           => 'ApiTest',
         self::ACTION_AUTH_TEST          => 'AuthTest',

@@ -5,7 +5,7 @@ namespace DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Client\Identity;
 
-class PostMessage implements ActionsInterface
+class ChatPostMessage implements ActionsInterface
 {
     /**
      * @var Identity
