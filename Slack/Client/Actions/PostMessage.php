@@ -83,6 +83,8 @@ class PostMessage implements ActionsInterface
      */
     public function parseResponse(array $response)
     {
-        return [];
+        return [
+            'timestamp' => $response['ts']
+        ];
     }
 }
