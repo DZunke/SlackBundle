@@ -1,16 +1,15 @@
 # SlackBundle Documentation
 
 1. [Installation](installation.md)
-2. [Roadmap](roadmap.md)
 
-3. [Configuration Reference](configuration.md)
+2. [Configuration Reference](configuration.md)
 
-4. [Basic Usage without Symfony Integration](basic-usage.md)
-5. [Basic Usage in Symfony](symfony-usage.md)
-6. [Available Actions for Basic Usage](actions-list.md)
+3. [Basic Usage without Symfony Integration](basic-usage.md)
+4. [Basic Usage in Symfony](symfony-usage.md)
+5. [Available Actions for Basic Usage](actions-list.md)
 
-7. [Services](services.md)
-8. [Commands](commands.md)
-9. [Monolog Integration](monolog.md)
+6. [Services](services.md)
+7. [Commands](commands.md)
+8. [Monolog Integration](monolog.md)
 
-10. [Help for Slack](slack.md)
+9. [Help for Slack](slack.md)
