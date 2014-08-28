@@ -1,5 +1,6 @@
 SlackBundle v1.1.0
 ==================
+- Feature: Added Attachments to the Messaging-Methods
 - (NOT BC) Refactor: Identities are only needed for Chat, so no general use is needed
 
 SlackBundle v1.0.0

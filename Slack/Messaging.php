@@ -3,6 +3,7 @@
 namespace DZunke\SlackBundle\Slack;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
+use DZunke\SlackBundle\Slack\Messaging\Attachment;
 use DZunke\SlackBundle\Slack\Messaging\IdentityBag;
 
 class Messaging
@@ -44,13 +45,14 @@ class Messaging
     }
 
     /**
-     * @param string $channel
-     * @param string $message
-     * @param string $identity
+     * @param string       $channel
+     * @param string       $message
+     * @param string       $identity
+     * @param Attachment[] $attachments
      * @return Client\Response
      * @throws \InvalidArgumentException
      */
-    public function message($channel, $message, $identity)
+    public function message($channel, $message, $identity, array $attachments = [])
     {
         if (!$this->identityBag->has($identity)) {
             throw new \InvalidArgumentException('identiy "' . $identity . '" is not registered');
@@ -59,9 +61,10 @@ class Messaging
         return $this->client->send(
             Actions::ACTION_POST_MESSAGE,
             [
-                'identity' => $this->identityBag->get($identity),
-                'channel'  => $channel,
-                'text'     => $message
+                'identity'    => $this->identityBag->get($identity),
+                'channel'     => $channel,
+                'text'        => $message,
+                'attachments' => $attachments
             ],
             $identity
         );
