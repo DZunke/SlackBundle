@@ -1,6 +1,6 @@
 <?php
 
-namespace DZunke\SlackBundle\Slack\Client;
+namespace DZunke\SlackBundle\Slack\Messaging;
 
 class IdentityBag
 {

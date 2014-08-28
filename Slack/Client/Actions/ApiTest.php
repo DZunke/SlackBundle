@@ -22,15 +22,6 @@ class ApiTest implements ActionsInterface
     }
 
     /**
-     * @param Identity $identity
-     * @return $this
-     */
-    public function setIdentity(Identity $identity)
-    {
-        return $this;
-    }
-
-    /**
      * @param array $parameter
      * @return $this
      */

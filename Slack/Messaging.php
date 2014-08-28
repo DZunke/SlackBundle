@@ -3,6 +3,7 @@
 namespace DZunke\SlackBundle\Slack;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
+use DZunke\SlackBundle\Slack\Messaging\IdentityBag;
 
 class Messaging
 {
@@ -12,11 +13,26 @@ class Messaging
     protected $client;
 
     /**
-     * @param Client $client
+     * @var IdentityBag
      */
-    public function  __construct(Client $client)
+    protected $identityBag;
+
+    /**
+     * @param Client      $client
+     * @param IdentityBag $identityBag
+     */
+    public function  __construct(Client $client, IdentityBag $identityBag)
     {
-        $this->client = $client;
+        $this->client      = $client;
+        $this->identityBag = $identityBag;
+    }
+
+    /**
+     * @return IdentityBag
+     */
+    public function getIdentityBag()
+    {
+        return $this->identityBag;
     }
 
     /**
@@ -32,14 +48,20 @@ class Messaging
      * @param string $message
      * @param string $identity
      * @return Client\Response
+     * @throws \InvalidArgumentException
      */
     public function message($channel, $message, $identity)
     {
+        if (!$this->identityBag->has($identity)) {
+            throw new \InvalidArgumentException('identiy "' . $identity . '" is not registered');
+        }
+
         return $this->client->send(
             Actions::ACTION_POST_MESSAGE,
             [
-                'channel' => $channel,
-                'text'    => $message
+                'identity' => $this->identityBag->get($identity),
+                'channel'  => $channel,
+                'text'     => $message
             ],
             $identity
         );
