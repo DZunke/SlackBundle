@@ -4,7 +4,6 @@ namespace DZunke\SlackBundle\Slack;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Client\Connection;
-use DZunke\SlackBundle\Slack\Client\IdentityBag;
 use DZunke\SlackBundle\Slack\Client\Response;
 use Guzzle\Common\Event;
 use Guzzle\Http\Client as GuzzleClient;

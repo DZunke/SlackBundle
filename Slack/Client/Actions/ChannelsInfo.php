@@ -3,7 +3,6 @@
 namespace DZunke\SlackBundle\Slack\Client\Actions;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
-use DZunke\SlackBundle\Slack\Client\Identity;
 
 class ChannelsInfo implements ActionsInterface
 {
