@@ -84,6 +84,7 @@ protected $parameter = [
     'icon_emoji'   => null,
     'parse'        => 'full',
     'link_names'   => 1,
-    'unfurl_links' => 1
+    'unfurl_links' => 1,
+    'attachments'  => []
 ];
 ```
