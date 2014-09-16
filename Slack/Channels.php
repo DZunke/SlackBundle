@@ -49,7 +49,7 @@ class Channels
     }
 
     /**
-     * @return Client\Response
+     * @return Client\Response|bool
      */
     public function listAll()
     {
@@ -61,7 +61,7 @@ class Channels
 
     /**
      * @param string $channel The Id of the Channel - NOT the Name. self::getId() if needed
-     * @return Client\Response
+     * @return Client\Response|bool
      */
     public function info($channel)
     {
@@ -76,7 +76,7 @@ class Channels
     /**
      * @param string $channel The Id of the Channel - NOT the Name. self::getId() if needed
      * @param string $topic
-     * @return $this|Client\Response
+     * @return $this|Client\Response|bool
      */
     public function setTopic($channel, $topic)
     {

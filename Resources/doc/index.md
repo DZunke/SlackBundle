@@ -12,4 +12,6 @@
 7. [Commands](commands.md)
 8. [Monolog Integration](monolog.md)
 
-9. [Help for Slack](slack.md)
+9. [Silex Integration](silex.md)
+
+10. [Help for Slack](slack.md)

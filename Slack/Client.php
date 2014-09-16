@@ -28,10 +28,14 @@ class Client
     /**
      * @param string $action
      * @param array  $parameter
-     * @return Response
+     * @return Response|bool
      */
     public function send($action, array $parameter)
     {
+        if (!$this->connection->isValid()) {
+            return false;
+        }
+
         $action = Actions::loadClass($action);
         $action->setParameter($parameter);
 

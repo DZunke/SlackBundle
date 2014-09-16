@@ -49,7 +49,7 @@ class Messaging
      * @param string       $message
      * @param string       $identity
      * @param Attachment[] $attachments
-     * @return Client\Response
+     * @return Client\Response|bool
      * @throws \InvalidArgumentException
      */
     public function message($channel, $message, $identity, array $attachments = [])
