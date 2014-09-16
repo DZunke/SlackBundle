@@ -12,6 +12,22 @@ $response = $container->get('dz.slack.messaging')->message(
 );
 ```
 
+There is also a way to use the "Attachment"-Feature of Slack. In this Case there will be a multi-column part below the Message.
+For this you must create deliver an Array of Attachments to the Message-Method.
+
+``` php
+$attachment = new Attachment();
+$attachment->setColor('danger');
+$attachment->addField('Test1', 'Test works');
+
+$response = $container->get('dz.slack.messaging')->message(
+    '#foo-channel',
+    'Good Morning, please make sure u got a coffee before working!',
+    'CoffeeBrewer',
+    [$attachment]
+);
+```
+
 ## Channels
 
 There are some operations you can do for a Channel. It is necessary to get the ChannelId from the Slack-API before you

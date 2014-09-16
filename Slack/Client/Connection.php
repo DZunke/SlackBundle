@@ -75,4 +75,12 @@ class Connection
     {
         return $this->limitRetries;
     }
+
+    /**
+     * @return bool
+     */
+    public function isValid()
+    {
+        return (!empty($this->endpoint) && !empty($this->token));
+    }
 }

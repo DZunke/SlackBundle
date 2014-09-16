@@ -3,7 +3,6 @@
 namespace DZunke\SlackBundle\Slack\Client\Actions;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
-use DZunke\SlackBundle\Slack\Client\Identity;
 
 class ChannelsInfo implements ActionsInterface
 {
@@ -21,15 +20,6 @@ class ChannelsInfo implements ActionsInterface
     public function getRenderedRequestParams()
     {
         return $this->parameter;
-    }
-
-    /**
-     * @param Identity $identity
-     * @return $this
-     */
-    public function setIdentity(Identity $identity)
-    {
-        return $this;
     }
 
     /**

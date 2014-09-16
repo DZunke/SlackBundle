@@ -3,27 +3,24 @@
 namespace DZunke\SlackBundle\Slack\Client\Actions;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
-use DZunke\SlackBundle\Slack\Client\Identity;
+use DZunke\SlackBundle\Slack\Messaging\Attachment;
+use DZunke\SlackBundle\Slack\Messaging\Identity;
 
 class ChatPostMessage implements ActionsInterface
 {
     /**
-     * @var Identity
-     */
-    protected $identity;
-
-    /**
      * @var array
      */
     protected $parameter = [
-        'username'     => null,
+        'identity'     => null,
         'channel'      => null,
         'text'         => null,
         'icon_url'     => null,
         'icon_emoji'   => null,
         'parse'        => 'full',
         'link_names'   => 1,
-        'unfurl_links' => 1
+        'unfurl_links' => 1,
+        'attachments'  => [],
     ];
 
     /**
@@ -32,26 +29,39 @@ class ChatPostMessage implements ActionsInterface
      */
     public function getRenderedRequestParams()
     {
-        if (is_null($this->identity)) {
+        if (is_null($this->parameter['identity']) || !$this->parameter['identity'] instanceof Identity) {
             throw new \Exception('no identity given');
         }
 
-        $this->parameter['username']   = $this->identity->getUsername();
-        $this->parameter['icon_url']   = $this->identity->getIconUrl();
-        $this->parameter['icon_emoji'] = $this->identity->getIconEmoji();
+        $this->parseIdentity();
+        $this->parseAttachments();
 
         return $this->parameter;
     }
 
-    /**
-     * @param Identity $identity
-     * @return $this
-     */
-    public function setIdentity(Identity $identity)
+    private function parseAttachments()
     {
-        $this->identity = $identity;
+        if (empty($this->parameter['attachments'])) {
+            return;
+        }
 
-        return $this;
+        $attachments = [];
+        foreach ($this->parameter['attachments'] as $attachmentObj) {
+            if (!$attachmentObj instanceof Attachment) {
+                throw new \Exception('atachments must be instance of \DZunke\SlackBundle\Slack\Messaging\Attachment');
+            }
+
+            $attachments[] = $attachmentObj->toArray();
+        }
+        $this->parameter['attachments'] = json_encode($attachments);
+    }
+
+    private function parseIdentity()
+    {
+        $this->parameter['username']   = $this->parameter['identity']->getUsername();
+        $this->parameter['icon_url']   = $this->parameter['identity']->getIconUrl();
+        $this->parameter['icon_emoji'] = $this->parameter['identity']->getIconEmoji();
+        unset($this->parameter['identity']);
     }
 
     /**

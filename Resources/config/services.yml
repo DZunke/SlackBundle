@@ -1,7 +1,7 @@
 services:
 
     dz.slack.identity_bag:
-        class: DZunke\SlackBundle\Slack\Client\IdentityBag
+        class: DZunke\SlackBundle\Slack\Messaging\IdentityBag
 
     dz.slack.connection:
         class: DZunke\SlackBundle\Slack\Client\Connection
@@ -9,12 +9,10 @@ services:
     dz.slack.client:
         class: DZunke\SlackBundle\Slack\Client
         arguments: [@dz.slack.connection]
-        calls:
-            - [setIdentityBag, [@dz.slack.identity_bag]]
 
     dz.slack.messaging:
         class: DZunke\SlackBundle\Slack\Messaging
-        arguments: [@dz.slack.client]
+        arguments: [@dz.slack.client, @dz.slack.identity_bag]
 
     dz.slack.channels:
         class: DZunke\SlackBundle\Slack\Channels

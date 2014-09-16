@@ -38,7 +38,7 @@ class SlackHandler extends AbstractProcessingHandler
         $this->channel         = $channel;
         $this->username        = $username;
 
-        if (!$this->messagingClient->getClient()->getIdentityBag()->has($username)) {
+        if (!$this->messagingClient->getIdentityBag()->has($username)) {
             throw new \InvalidArgumentException('Invalid Username given');
         }
 

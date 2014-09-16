@@ -77,8 +77,11 @@ Available Parameters:
 
 ``` php
 protected $parameter = [
+    'identity'     => null,     # Object of Class \DZunke\SlackBundle\Slack\Messaging\Identity
     'channel'      => null,
     'text'         => null,
+    'icon_url'     => null,
+    'icon_emoji'   => null,
     'parse'        => 'full',
     'link_names'   => 1,
     'unfurl_links' => 1

@@ -10,10 +10,10 @@ public function messageAction()
     $response = $client->send(
         \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
         [
-            'channel' => '#slack-testing',
-            'text'    => 'Good Morning, please make sure u got a coffee before working!'
-        ],
-        'CoffeeBrewer'
+            'identity' => $this->get('dz.slack.identity_bag')->get('CoffeeBrewer'),
+            'channel'  => '#slack-testing',
+            'text'     => 'Good Morning, please make sure u got a coffee before working!'
+        ]
     );
 }
 ```

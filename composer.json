@@ -24,5 +24,10 @@
     "autoload": {
         "psr-0": { "DZunke\\SlackBundle": "" }
     },
-    "target-dir": "DZunke/SlackBundle"
+    "target-dir": "DZunke/SlackBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "dev-dev"
+        }
+    }
 }

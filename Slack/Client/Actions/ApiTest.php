@@ -3,7 +3,6 @@
 namespace DZunke\SlackBundle\Slack\Client\Actions;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
-use DZunke\SlackBundle\Slack\Client\Identity;
 
 class ApiTest implements ActionsInterface
 {
@@ -19,15 +18,6 @@ class ApiTest implements ActionsInterface
     public function getRenderedRequestParams()
     {
         return $this->parameter;
-    }
-
-    /**
-     * @param Identity $identity
-     * @return $this
-     */
-    public function setIdentity(Identity $identity)
-    {
-        return $this;
     }
 
     /**
