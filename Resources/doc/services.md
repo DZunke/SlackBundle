@@ -28,6 +28,20 @@ $response = $container->get('dz.slack.messaging')->message(
 );
 ```
 
+### File Uploads
+
+The Messaging does include File Uploads. So the Service has an "upload"-Method to publish Reports or other Files to a Channel.
+You must note that every uploaded File will be associated with the API-Key-User configured for your Slack-Client.
+
+``` php
+$response = $container->get('dz.slack.messaging')->upload(
+    '#foo-channel',
+    'Title for this File',
+    '/Path/to/the/file',
+    'Optional Comment'
+);
+```
+
 ## Channels
 
 There are some operations you can do for a Channel. It is necessary to get the ChannelId from the Slack-API before you
