@@ -3,7 +3,6 @@
 namespace DZunke\SlackBundle\Slack\Client\Actions;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
-use DZunke\SlackBundle\Slack\Client\Identity;
 
 class FilesUpload implements ActionsInterface
 {
@@ -57,7 +56,7 @@ class FilesUpload implements ActionsInterface
      */
     public function parseResponse(array $response)
     {
-        if (isset($response['ok']) && $response['ok'] == true) {
+        if (isset($response['ok']) && $response['ok'] === true) {
             return $response['file'];
         }
 

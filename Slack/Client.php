@@ -54,7 +54,7 @@ class Client
 
             if (
                 $response->getStatus() === true ||
-                ($response->getStatus() == false && $response->getError() != Response::ERROR_RATE_LIMITED)
+                ($response->getStatus() === false && $response->getError() != Response::ERROR_RATE_LIMITED)
             ) {
                 break;
             }
