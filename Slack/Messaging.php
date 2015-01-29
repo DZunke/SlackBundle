@@ -3,7 +3,7 @@
 namespace DZunke\SlackBundle\Slack;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
-use DZunke\SlackBundle\Slack\Messaging\Attachment;
+use DZunke\SlackBundle\Slack\Entity\MessageAttachment as Attachment;
 use DZunke\SlackBundle\Slack\Messaging\IdentityBag;
 
 class Messaging

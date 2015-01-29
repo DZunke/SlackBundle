@@ -16,7 +16,7 @@ There is also a way to use the "Attachment"-Feature of Slack. In this Case there
 For this you must create deliver an Array of Attachments to the Message-Method.
 
 ``` php
-$attachment = new Attachment();
+$attachment = new DZunke\SlackBundle\Slack\Entity\MessageAttachment();
 $attachment->setColor('danger');
 $attachment->addField('Test1', 'Test works');
 

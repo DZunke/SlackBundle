@@ -3,6 +3,9 @@
 namespace DZunke\SlackBundle\Slack;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
+use DZunke\SlackBundle\Slack\Entity\Message;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 class Channels
 {
@@ -33,13 +36,15 @@ class Channels
      */
     public function getId($channelName)
     {
-        $channels = (array)$this->listAll()->getData();
+        if ($channelName[0] === 'C') {
+            return $channelName;
+        }
 
         if (strpos($channelName, '#') !== false) {
             $channelName = str_replace('#', '', $channelName);
         }
 
-        foreach ($channels as $name => $data) {
+        foreach ((array)$this->listAll()->getData() as $name => $data) {
             if ($name == $channelName) {
                 return $data['id'];
             }
@@ -86,7 +91,7 @@ class Channels
             Actions::ACTION_CHANNELS_SET_TOPIC,
             [
                 'channel' => (string)$channel,
-                'topic'   => (string)$topic
+                'topic' => (string)$topic
             ]
         );
 
@@ -99,6 +104,42 @@ class Channels
         $data['new_topic'] = (string)$topic;
 
         return $response->setData($data);
+    }
+
+    /**
+     * @param string $channel
+     * @param int    $from
+     * @param int    $count
+     * @return Message[]
+     */
+    public function history($channel, $from = null, $count = 10)
+    {
+        $messages = $this->client->send(
+            Client\Actions::ACTION_CHANNELS_HISTORY,
+            [
+                'channel' => $this->getId($channel),
+                'oldest' => is_null($from) ? time() : $from,
+                'count' => $count
+            ]
+        );
+
+        $repository = [];
+        if (!empty($messages->getData()['messages'])) {
+            $messages = $messages->getData()['messages'];
+            foreach (array_reverse($messages) as $message) {
+                $objMsg = new Message();
+                $objMsg->setId($message['ts']);
+                $objMsg->setChannel($channel);
+                $objMsg->setType(isset($message['subtype']) ? $message['subtype'] : $message['type']);
+                $objMsg->setUserId(isset($message['user']) ? $message['user'] : null);
+                $objMsg->setUsername(isset($message['username']) ? $message['username'] : null);
+                $objMsg->setContent($message['test']);
+
+                $repository[] = $objMsg;
+            }
+        }
+
+        return $repository;
     }
 
 }

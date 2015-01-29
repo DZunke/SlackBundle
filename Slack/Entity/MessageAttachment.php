@@ -1,8 +1,8 @@
 <?php
 
-namespace DZunke\SlackBundle\Slack\Messaging;
+namespace DZunke\SlackBundle\Slack\Entity;
 
-class Attachment
+class MessageAttachment
 {
     /**
      * Can either be one of 'good', 'warning', 'danger', or any hex color code
