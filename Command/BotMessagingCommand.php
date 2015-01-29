@@ -18,28 +18,6 @@ class BotMessagingCommand extends ContainerAwareCommand
 
     const PROCESS_ITERATION_SLEEP = 1;
 
-    const CHANNEL_WATCH = '#slack-testing';
-
-    /**
-     * @var InputInterface
-     */
-    protected $input;
-
-    /**
-     * @var OutputInterface
-     */
-    protected $output;
-
-    /**
-     * @var Client
-     */
-    protected $client;
-
-    /**
-     * @var int
-     */
-    protected $oldest;
-
     protected function configure()
     {
         $this
@@ -54,31 +32,21 @@ class BotMessagingCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->oldest = time();
-        $this->input  = $input;
-        $this->output = $output;
-        $this->client = $this->getContainer()->get('dz.slack.client');
-
-        $channelsSrv = $this->getContainer()->get('dz.slack.channels');
-
         $logger = new Logger(new StreamHandler('php://output'));
 
-        $channel = $channelsSrv->getId($input->getArgument('channel'));
-
+        $channel = $this->getContainer()->get('dz.slack.channels')->getId($input->getArgument('channel'));
         if (empty($channel)) {
+            $logger->error('channel "' . $channel . '" does not exists');
             return;
         }
 
-
         $lastTimestamp = time();
         while (true) {
-
+            
             try {
-
-                $latestMessages = $channelsSrv->history($channel, $lastTimestamp);
+                $latestMessages = $this->getContainer()->get('dz.slack.channels')->history($channel, $lastTimestamp);
 
                 foreach ($latestMessages as $message) {
-
                     if ($message->isBot() === true) {
                         continue;
                     }
