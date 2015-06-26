@@ -16,7 +16,7 @@ There is also a way to use the "Attachment"-Feature of Slack. In this Case there
 For this you must create deliver an Array of Attachments to the Message-Method.
 
 ``` php
-$attachment = new Attachment();
+$attachment = new DZunke\SlackBundle\Slack\Entity\MessageAttachment();
 $attachment->setColor('danger');
 $attachment->addField('Test1', 'Test works');
 
@@ -25,6 +25,20 @@ $response = $container->get('dz.slack.messaging')->message(
     'Good Morning, please make sure u got a coffee before working!',
     'CoffeeBrewer',
     [$attachment]
+);
+```
+
+### File Uploads
+
+The Messaging does include File Uploads. So the Service has an "upload"-Method to publish Reports or other Files to a Channel.
+You must note that every uploaded File will be associated with the API-Key-User configured for your Slack-Client.
+
+``` php
+$response = $container->get('dz.slack.messaging')->upload(
+    '#foo-channel',
+    'Title for this File',
+    '/Path/to/the/file',
+    'Optional Comment'
 );
 ```
 

@@ -84,6 +84,24 @@ protected $parameter = [
     'icon_emoji'   => null,
     'parse'        => 'full',
     'link_names'   => 1,
-    'unfurl_links' => 1
+    'unfurl_links' => 1,
+    'attachments'  => []
+];
+```
+
+## files.upload
+
+[Slack Documentation](https://api.slack.com/methods/files.upload)
+
+Constant: \DZunke\SlackBundle\Slack\Client::ACTION_FILES_UPLOAD
+
+``` php
+protected $parameter = [
+    'content'         => null,
+    'filetype'        => null,
+    'filename'        => null,
+    'title'           => null,
+    'initial_comment' => null,
+    'channels'        => null   # If no Channel is given the File will be private to the API-User
 ];
 ```

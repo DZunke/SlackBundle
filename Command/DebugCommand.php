@@ -60,7 +60,7 @@ class DebugCommand extends ContainerAwareCommand
             null
         );
 
-        if ($channels->getStatus() == false) {
+        if ($channels->getStatus() === false) {
             $this->output->writeln('<error>' . $channels->getError() . '</error>');
 
             return;

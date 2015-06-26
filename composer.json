@@ -18,16 +18,8 @@
         "php": ">=5.4.0",
         "guzzle/guzzle": ">=3.7.0"
     },
-    "require-dev": {
-        "phpunit/phpunit": "4.*"
-    },
     "autoload": {
         "psr-0": { "DZunke\\SlackBundle": "" }
     },
-    "target-dir": "DZunke/SlackBundle",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "dev-dev"
-        }
-    }
+    "target-dir": "DZunke/SlackBundle"
 }

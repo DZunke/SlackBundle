@@ -3,7 +3,7 @@
 namespace DZunke\SlackBundle\Slack;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
-use DZunke\SlackBundle\Slack\Messaging\Attachment;
+use DZunke\SlackBundle\Slack\Entity\MessageAttachment as Attachment;
 use DZunke\SlackBundle\Slack\Messaging\IdentityBag;
 
 class Messaging
@@ -67,6 +67,42 @@ class Messaging
                 'attachments' => $attachments
             ],
             $identity
+        );
+    }
+
+
+    /**
+     * @param string        $channel
+     * @param string        $title
+     * @param string        $file
+     * @param string|null   $comment
+     * @return Client\Response
+     */
+    public function upload($channel, $title, $file, $comment = null)
+    {
+        if (!file_exists($file)) {
+            return false;
+        }
+
+        $params = [];
+        $params['title'] = $title;
+        $params['initial_comment'] = $comment;
+        $params['channels'] = null;
+
+        $channelDiscover = new Channels($this->client);
+        $channelId = $channelDiscover->getId($channel);
+
+        if (!empty($channelId)) {
+            $params['channels'] = $channelId;
+        }
+
+        $params['content'] = file_get_contents($file);
+        $params['fileType'] = mime_content_type($file);
+        $params['filename'] = basename($file);
+
+        return $this->client->send(
+            Actions::ACTION_FILES_UPLOAD,
+            $params
         );
     }
 }

@@ -1,3 +1,12 @@
+SlackBundle v1.2.0
+==================
+- Feature: Added FileUploads
+- Feature: Added Basic Implementation for Event-Driven Bots
+
+SlackBundle v1.1.1
+==================
+- Feature: Downgraded requirement for GuzzleClient Version to 3.7.0 (by @toooni)
+
 SlackBundle v1.1.0
 ==================
 - Feature: Added Provider for Silex-Integration
