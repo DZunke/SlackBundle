@@ -58,9 +58,13 @@ class ChatPostMessage implements ActionsInterface
 
     private function parseIdentity()
     {
-        $this->parameter['username']   = $this->parameter['identity']->getUsername();
-        $this->parameter['icon_url']   = $this->parameter['identity']->getIconUrl();
-        $this->parameter['icon_emoji'] = $this->parameter['identity']->getIconEmoji();
+        $this->parameter['username'] = $this->parameter['identity']->getUsername();
+        if (empty($this->parameter['icon_url']) && $iconUrl = $this->parameter['identity']->getIconUrl()) {
+            $this->parameter['icon_url'] = $iconUrl;
+        }
+        if (empty($this->parameter['icon_emoji']) && $iconEmoji = $this->parameter['identity']->getIconEmoji()) {
+            $this->parameter['icon_emoji'] = $iconEmoji;
+        }
         unset($this->parameter['identity']);
     }
 
