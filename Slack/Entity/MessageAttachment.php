@@ -232,6 +232,8 @@ class MessageAttachment
             'value' => (string)$text,
             'short' => $scale
         ];
+
+        return $this;
     }
 
     /**
