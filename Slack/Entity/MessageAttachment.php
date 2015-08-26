@@ -5,6 +5,27 @@ namespace DZunke\SlackBundle\Slack\Entity;
 class MessageAttachment
 {
     /**
+     * Optional link to author icon
+     *
+     * @var string URL address
+     */
+    protected $authorIcon;
+
+    /**
+     * Optional link to author
+     *
+     * @var string URL address
+     */
+    protected $authorLink;
+
+    /**
+     * Optional name of author
+     *
+     * @var string
+     */
+    protected $authorName;
+
+    /**
      * Can either be one of 'good', 'warning', 'danger', or any hex color code
      *
      * @var string
@@ -20,11 +41,39 @@ class MessageAttachment
     protected $fallback;
 
     /**
+     * Optional link to image
+     *
+     * @var string URL address
+     */
+    protected $imageUrl;
+
+    /**
      * Optional text that should appear within the attachment
      *
      * @var string
      */
     protected $text;
+
+    /**
+     * Optional title
+     *
+     * @var string
+     */
+    protected $title;
+
+    /**
+     * Optional title link
+     *
+     * @var string
+     */
+    protected $titleLink;
+
+    /**
+     * Optional link to thumbnail
+     *
+     * @var string
+     */
+    protected $thumbUrl;
 
     /**
      * Optional text that should appear above the formatted data
@@ -43,6 +92,63 @@ class MessageAttachment
      * @var array
      */
     protected $fields = [];
+
+    /**
+     * @return string
+     */
+    public function getAuthorIcon()
+    {
+        return $this->authorIcon;
+    }
+
+    /**
+     * @param string $authorIcon
+     * @return $this
+     */
+    public function setAuthorIcon($authorIcon)
+    {
+        $this->authorIcon = $authorIcon;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorLink()
+    {
+        return $this->authorLink;
+    }
+
+    /**
+     * @param string $authorLink
+     * @return $this
+     */
+    public function setAuthorLink($authorLink)
+    {
+        $this->authorLink = $authorLink;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorName()
+    {
+        return $this->authorName;
+    }
+
+    /**
+     * @param string $authorName
+     * @return $this
+     */
+    public function setAuthorName($authorName)
+    {
+        $this->authorName = $authorName;
+
+        return $this;
+    }
 
     /**
      * @param string $color
@@ -80,6 +186,25 @@ class MessageAttachment
     public function getFallback()
     {
         return $this->fallback;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageUrl()
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * @param string $imageUrl
+     * @return $this
+     */
+    public function setImageUrl($imageUrl)
+    {
+        $this->imageUrl = $imageUrl;
+
+        return $this;
     }
 
     /**
@@ -156,15 +281,80 @@ class MessageAttachment
     }
 
     /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     * @return $this
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleLink()
+    {
+        return $this->titleLink;
+    }
+
+    /**
+     * @param string $titleLink
+     * @return $this
+     */
+    public function setTitleLink($titleLink)
+    {
+        $this->titleLink = $titleLink;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getThumbUrl()
+    {
+        return $this->thumbUrl;
+    }
+
+    /**
+     * @param string $thumbUrl
+     * @return $this
+     */
+    public function setThumbUrl($thumbUrl)
+    {
+        $this->thumbUrl = $thumbUrl;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray()
     {
         return [
             'fallback' => $this->getFallback(),
-            'pretext'  => $this->getPretext(),
-            'color'    => $this->getColor(),
-            'fields'   => $this->getFields()
+            'color' => $this->getColor(),
+            'pretext' => $this->getPretext(),
+            'author_name' => $this->getAuthorName(),
+            'author_link' => $this->getAuthorLink(),
+            'author_icon' => $this->getAuthorIcon(),
+            'title' => $this->getTitle(),
+            'title_link' => $this->getTitleLink(),
+            'text' => $this->getText(),
+            'fields'  => $this->getFields(),
+            'image_url' => $this->getImageUrl(),
+            'thumb_url' => $this->getThumbUrl(),
         ];
     }
 }

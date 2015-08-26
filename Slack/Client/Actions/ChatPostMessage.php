@@ -48,7 +48,7 @@ class ChatPostMessage implements ActionsInterface
         $attachments = [];
         foreach ($this->parameter['attachments'] as $attachmentObj) {
             if (!$attachmentObj instanceof Attachment) {
-                throw new \Exception('atachments must be instance of \DZunke\SlackBundle\Slack\Messaging\Attachment');
+                throw new \Exception('atachments must be instance of \DZunke\SlackBundle\Slack\Entity\MessageAttachment');
             }
 
             $attachments[] = $attachmentObj->toArray();
