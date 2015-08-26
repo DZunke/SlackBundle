@@ -1,6 +1,10 @@
+SlackBundle v1.2.2
+==================
+- Patch: MessageAttachment support complete attachment-api (by @shimmi)
+
 SlackBundle v1.2.1
 ==================
-- Patch Feature: Customize icon_url and icon_emoji on single message-action
+- Patch Feature: Customize icon_url and icon_emoji on single message-action (by @tobiassjosten)
 
 SlackBundle v1.2.0
 ==================
