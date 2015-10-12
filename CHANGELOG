@@ -1,3 +1,8 @@
+SlackBundle v1.3.0
+==================
+- Feature: File upload service now accepts an array of channels, string usage is deprecated
+- Patch: File upload no longer need to lookup channel id due to api changes
+
 SlackBundle v1.2.2
 ==================
 - Patch: MessageAttachment support complete attachment-api (by @shimmi)
