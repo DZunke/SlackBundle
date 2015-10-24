@@ -3,6 +3,7 @@
 namespace DZunke\SlackBundle\Monolog\Handler;
 
 use DZunke\SlackBundle\Slack\Messaging;
+use DZunke\SlackBundle\Slack\Entity\MessageAttachment;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
@@ -47,7 +48,11 @@ class SlackHandler extends AbstractProcessingHandler
 
     protected function write(array $record)
     {
-        $this->messagingClient->message($this->channel, $record["formatted"], $this->username);
+        $attachment = new MessageAttachment();
+        $attachment->setColor('danger');
+        $attachment->addField('Error', $record['formatted']);
+
+        $this->messagingClient->message($this->channel, '', $this->username, [$attachment]);
     }
 
     /**
