@@ -27,3 +27,15 @@ php app/console dzunke:slack:channels:topic "C02GABTDT" "Lorem ipsum dolor sit a
 # If you don't have the ChannelId it must be discovered while processing
 php app/console dzunke:slack:channels:topic "#foo-channel" "Lorem ipsum dolor sit amet .." -d
 ```
+
+## Read userdata from api
+
+you will get a table of userdata.
+
+``` bash
+# Read all users from your team
+php app/console dzunke:slack:users
+
+# Read a single user
+php app/console dzunke:slack:users --user=nameOfTheUser
+```

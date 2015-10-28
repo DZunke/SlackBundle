@@ -65,10 +65,21 @@ class Users
      * @param string $name
      * @return null|array
      */
-    public function getId($name)
+    public function getUser($name)
     {
         $users = $this->getUsers();
 
-        return array_key_exists($name, $users) ? $users[$name]['id'] : null;
+        return array_key_exists($name, $users) ? $users[$name] : null;
+    }
+
+    /**
+     * @param string $name
+     * @return null|array
+     */
+    public function getId($name)
+    {
+        $user = $this->getUser($name);
+
+        return !is_null($user) ? $user['id'] : null;
     }
 }
