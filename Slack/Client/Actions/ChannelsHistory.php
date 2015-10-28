@@ -4,6 +4,9 @@ namespace DZunke\SlackBundle\Slack\Client\Actions;
 
 use DZunke\SlackBundle\Slack\Client\Actions;
 
+/**
+ * @see https://api.slack.com/methods/channels.history
+ */
 class ChannelsHistory implements ActionsInterface
 {
 

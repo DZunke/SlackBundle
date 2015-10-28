@@ -6,6 +6,9 @@ use DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Entity\MessageAttachment as Attachment;
 use DZunke\SlackBundle\Slack\Messaging\Identity;
 
+/**
+ * @see https://api.slack.com/methods/chat.postMessage
+ */
 class ChatPostMessage implements ActionsInterface
 {
     /**
