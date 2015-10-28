@@ -122,3 +122,15 @@ protected $parameter = [
     'channels'        => null   # If no Channel is given the File will be private to the API-User
 ];
 ```
+
+## users.list
+
+[Slack Documentation](https://api.slack.com/methods/users.list)
+
+Constant: \DZunke\SlackBundle\Slack\Client::ACTION_USERS_LIST
+
+``` php
+protected $parameter = [
+    'presence' => 1
+];
+```
