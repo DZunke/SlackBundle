@@ -5,6 +5,7 @@ SlackBundle v1.3.0
 - Feature: Implement action and service to get details about users on the team
 - Feature: Implement console command to read userdata from api
 - Patch: File upload no longer need to lookup channel id due to api changes
+- Patch: Set aliases for command names - old names with dzunke: prefix will be removed in the future!
 
 SlackBundle v1.2.2
 ==================

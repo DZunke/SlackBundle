@@ -14,6 +14,7 @@ class MessageCommand extends ContainerAwareCommand
     {
         $this
             ->setName('dzunke:slack:message')
+            ->setAliases(['slack:message'])
             ->setDescription('Sending a Message to a Channel or User')
             ->addArgument('channel', InputArgument::REQUIRED, 'an existing channel in your team to send to')
             ->addArgument('username', InputArgument::REQUIRED, 'an username from configured identities to send with')

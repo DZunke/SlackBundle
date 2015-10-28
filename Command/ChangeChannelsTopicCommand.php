@@ -15,6 +15,7 @@ class ChangeChannelsTopicCommand extends ContainerAwareCommand
     {
         $this
             ->setName('dzunke:slack:channels:topic')
+            ->setAliases(['slack:channels:topic'])
             ->setDescription('Changing the Topic of a Channel')
             ->addOption('discover', 'd', InputOption::VALUE_NONE, 'channel name is given, so discover the id')
             ->addArgument('channel', InputArgument::REQUIRED, 'an existing channel in your team to change the topic')
