@@ -38,6 +38,23 @@ protected $parameter = [
 ];
 ```
 
+## channels.invite
+
+[Slack Documentation](https://api.slack.com/methods/channels.invite)
+
+Constant: \DZunke\SlackBundle\Slack\Client::ACTION_CHANNELS_INVITE
+
+Available Parameters:
+
+Both Parameters have to be the if of the entity and not the raw name
+
+``` php
+protected $parameter = [
+   'channel' => null,
+   'user' => null,
+];
+```
+
 ## channels.list
 
 [Slack Documentation](https://api.slack.com/methods/channels.list)
