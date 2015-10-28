@@ -12,6 +12,7 @@ class Actions
     const ACTION_AUTH_TEST = 'auth.test';
     const ACTION_CHANNELS_SET_TOPIC = 'channels.setTopic';
     const ACTION_CHANNELS_INFO = 'channels.info';
+    const ACTION_CHANNELS_INVITE = 'channels.invite';
     const ACTION_CHANNELS_HISTORY = 'channels.history';
     const ACTION_FILES_UPLOAD = 'files.upload';
 
@@ -25,6 +26,7 @@ class Actions
         self::ACTION_AUTH_TEST => 'AuthTest',
         self::ACTION_CHANNELS_SET_TOPIC => 'ChannelsSetTopic',
         self::ACTION_CHANNELS_INFO => 'ChannelsInfo',
+        self::ACTION_CHANNELS_INVITE => 'ChannelsInvite',
         self::ACTION_CHANNELS_HISTORY => 'ChannelsHistory',
         self::ACTION_FILES_UPLOAD => 'FilesUpload'
     ];
