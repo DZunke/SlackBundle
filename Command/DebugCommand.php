@@ -31,6 +31,7 @@ class DebugCommand extends ContainerAwareCommand
     {
         $this
             ->setName('dzunke:slack:debug')
+            ->setAliases(['slack:debug'])
             ->setDescription('Gives some Debug Informations about the SlackBundle');
     }
 

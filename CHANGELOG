@@ -1,3 +1,12 @@
+SlackBundle v1.3.0
+==================
+- Feature: File upload service now accepts an array of channels, string usage is deprecated
+- Feature: Implement action to invite users to a channel
+- Feature: Implement action and service to get details about users on the team
+- Feature: Implement console command to read userdata from api
+- Patch: File upload no longer need to lookup channel id due to api changes
+- Patch: Set aliases for command names - old names with dzunke: prefix will be removed in the future!
+
 SlackBundle v1.2.2
 ==================
 - Patch: MessageAttachment support complete attachment-api (by @shimmi)

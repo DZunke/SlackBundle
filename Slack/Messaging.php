@@ -72,7 +72,7 @@ class Messaging
 
 
     /**
-     * @param string        $channel
+     * @param string|array  $channel    # String is DEPRECATED scince v1.3 - Deliver Array
      * @param string        $title
      * @param string        $file
      * @param string|null   $comment
@@ -84,18 +84,15 @@ class Messaging
             return false;
         }
 
+        if (!is_array($channel)) {
+            @trigger_error('Channel as String is deprecated scince v1.3, please deliver an Array of Channels', E_USER_DEPRECATED);
+            $channel = [$channel];
+        }
+
         $params = [];
         $params['title'] = $title;
         $params['initial_comment'] = $comment;
-        $params['channels'] = null;
-
-        $channelDiscover = new Channels($this->client);
-        $channelId = $channelDiscover->getId($channel);
-
-        if (!empty($channelId)) {
-            $params['channels'] = $channelId;
-        }
-
+        $params['channels'] = implode(',', $channel);
         $params['content'] = file_get_contents($file);
         $params['fileType'] = mime_content_type($file);
         $params['filename'] = basename($file);

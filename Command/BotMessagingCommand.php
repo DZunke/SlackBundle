@@ -22,6 +22,7 @@ class BotMessagingCommand extends ContainerAwareCommand
     {
         $this
             ->setName('dzunke:slack:run-bot')
+            ->setAliases(['slack:run-bot'])
             ->setDescription('Running the Bot-User to a Channel')
             ->addArgument(
                 'channel',

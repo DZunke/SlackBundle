@@ -65,3 +65,25 @@ $service->info($channelId);
 $service->setTopic($channelId, $newTopic);
 ```
 
+## Users
+
+To get more information about the users in your team there is a service to read user specific things. In lack of an
+api method to load single users every method of the service will load the complete list of users in your team. Beware
+of using this service without caching informations you often need.
+
+``` php
+$service = $container->get('dz.slack.users');
+
+# get the list of all users in your team
+$service->getUsers();
+
+# get all users that are not deleted
+$service->getActiveUsers();
+
+# get all deleted users
+$service->getDeletedUsers();
+
+# get the id of a single user - needed for some actions
+$service->getId($username);
+
+```

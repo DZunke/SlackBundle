@@ -30,7 +30,7 @@ class Client
      * @param array  $parameter
      * @return Response|bool
      */
-    public function send($action, array $parameter)
+    public function send($action, array $parameter = [])
     {
         if (!$this->connection->isValid()) {
             return false;

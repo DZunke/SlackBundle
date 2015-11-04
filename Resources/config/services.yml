@@ -17,3 +17,7 @@ services:
     dz.slack.channels:
         class: DZunke\SlackBundle\Slack\Channels
         arguments: [@dz.slack.client]
+
+    dz.slack.users:
+        class: DZunke\SlackBundle\Slack\Users
+        arguments: [@dz.slack.client]

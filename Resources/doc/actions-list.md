@@ -38,6 +38,23 @@ protected $parameter = [
 ];
 ```
 
+## channels.invite
+
+[Slack Documentation](https://api.slack.com/methods/channels.invite)
+
+Constant: \DZunke\SlackBundle\Slack\Client::ACTION_CHANNELS_INVITE
+
+Available Parameters:
+
+Both Parameters have to be the if of the entity and not the raw name
+
+``` php
+protected $parameter = [
+   'channel' => null,
+   'user' => null,
+];
+```
+
 ## channels.list
 
 [Slack Documentation](https://api.slack.com/methods/channels.list)
@@ -103,5 +120,17 @@ protected $parameter = [
     'title'           => null,
     'initial_comment' => null,
     'channels'        => null   # If no Channel is given the File will be private to the API-User
+];
+```
+
+## users.list
+
+[Slack Documentation](https://api.slack.com/methods/users.list)
+
+Constant: \DZunke\SlackBundle\Slack\Client::ACTION_USERS_LIST
+
+``` php
+protected $parameter = [
+    'presence' => 1
 ];
 ```

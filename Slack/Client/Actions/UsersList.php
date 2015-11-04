@@ -5,18 +5,16 @@ namespace DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Client\Actions;
 
 /**
- * @see https://api.slack.com/methods/channels.history
+ * @see https://api.slack.com/methods/users.list
  */
-class ChannelsHistory implements ActionsInterface
+class UsersList implements ActionsInterface
 {
 
     /**
      * @var array
      */
     protected $parameter = [
-        'channel' => null,
-        'oldest' => null,
-        'count' => 10
+        'presence' => 1
     ];
 
     /**
@@ -47,7 +45,7 @@ class ChannelsHistory implements ActionsInterface
      */
     public function getAction()
     {
-        return Actions::ACTION_CHANNELS_HISTORY;
+        return Actions::ACTION_USERS_LIST;
     }
 
     /**
@@ -56,6 +54,19 @@ class ChannelsHistory implements ActionsInterface
      */
     public function parseResponse(array $response)
     {
-        return $response;
+        $users = [];
+        foreach ($response['members'] as $user) {
+            $users[$user['name']] = [
+                'id' => $user['id'],
+                'name' => $user['name'],
+                'deleted' => (bool)$user['deleted'],
+                'real_name' => $user['profile']['real_name'],
+                'email' => $user['profile']['email'],
+                'is_bot' => (bool)$user['is_bot'],
+                'presence' => isset($user['presence']) ? $user['presence'] : null
+            ];
+        }
+
+        return $users;
     }
 }

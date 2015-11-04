@@ -5,9 +5,9 @@ namespace DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Client\Actions;
 
 /**
- * @see https://api.slack.com/methods/channels.history
+ * @see https://api.slack.com/methods/channels.invite
  */
-class ChannelsHistory implements ActionsInterface
+class ChannelsInvite implements ActionsInterface
 {
 
     /**
@@ -15,15 +15,19 @@ class ChannelsHistory implements ActionsInterface
      */
     protected $parameter = [
         'channel' => null,
-        'oldest' => null,
-        'count' => 10
+        'user' => null
     ];
 
     /**
      * @return array
+     * @throws \Exception
      */
     public function getRenderedRequestParams()
     {
+        if (is_null($this->parameter['channel']) || is_null($this->parameter['user'])) {
+            throw new \Exception('both parameters channel and user must be given');
+        }
+
         return $this->parameter;
     }
 
@@ -47,7 +51,7 @@ class ChannelsHistory implements ActionsInterface
      */
     public function getAction()
     {
-        return Actions::ACTION_CHANNELS_HISTORY;
+        return Actions::ACTION_CHANNELS_INVITE;
     }
 
     /**
@@ -56,6 +60,6 @@ class ChannelsHistory implements ActionsInterface
      */
     public function parseResponse(array $response)
     {
-        return $response;
+        return [];
     }
 }
