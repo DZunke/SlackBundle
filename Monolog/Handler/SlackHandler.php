@@ -2,8 +2,8 @@
 
 namespace DZunke\SlackBundle\Monolog\Handler;
 
-use DZunke\SlackBundle\Slack\Messaging;
 use DZunke\SlackBundle\Slack\Entity\MessageAttachment;
+use DZunke\SlackBundle\Slack\Messaging;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
@@ -49,8 +49,25 @@ class SlackHandler extends AbstractProcessingHandler
     protected function write(array $record)
     {
         $attachment = new MessageAttachment();
-        $attachment->setColor('danger');
-        $attachment->addField('Error', $record['formatted']);
+
+        switch($record['level']) {
+            case Logger::DEBUG:
+            case Logger::INFO:
+                $attachment->setColor('good');
+                break;
+            case Logger::NOTICE:
+            case Logger::WARNING:
+                $attachment->setColor('warning');
+                break;
+            case Logger::ERROR:
+            case Logger::CRITICAL:
+            case Logger::ALERT:
+            case Logger::EMERGENCY:
+                $attachment->setColor('danger');
+                break;
+        }
+
+        $attachment->addField($record['level_name'], $record['formatted']);
 
         $this->messagingClient->message($this->channel, '', $this->username, [$attachment]);
     }
