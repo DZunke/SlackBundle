@@ -1,3 +1,7 @@
+SlackBundle Dev-Pending
+==================
+- Feature: Monolog-Logger uses colored attachments based on the log level (by @jdecoster)
+
 SlackBundle v1.3.0
 ==================
 - Feature: File upload service now accepts an array of channels, string usage is deprecated
