@@ -8,16 +8,16 @@ services:
 
     dz.slack.client:
         class: DZunke\SlackBundle\Slack\Client
-        arguments: [@dz.slack.connection]
+        arguments: ["@dz.slack.connection"]
 
     dz.slack.messaging:
         class: DZunke\SlackBundle\Slack\Messaging
-        arguments: [@dz.slack.client, @dz.slack.identity_bag]
+        arguments: ["@dz.slack.client", "@dz.slack.identity_bag"]
 
     dz.slack.channels:
         class: DZunke\SlackBundle\Slack\Channels
-        arguments: [@dz.slack.client]
+        arguments: ["@dz.slack.client"]
 
     dz.slack.users:
         class: DZunke\SlackBundle\Slack\Users
-        arguments: [@dz.slack.client]
+        arguments: ["@dz.slack.client"]
