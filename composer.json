@@ -15,7 +15,8 @@
         "exclude": ["/Tests"]
     },
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.4",
+        "symfony/symfony": "~2.3|~3.0",
         "guzzle/guzzle": ">=3.7.0"
     },
     "autoload": {
