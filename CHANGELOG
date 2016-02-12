@@ -1,3 +1,10 @@
+SlackBundle v1.4.0
+==================
+- Feature: Monolog-Logger uses colored attachments based on the log level (by @jdecoster)
+- Patch: Quoting Services to Support Symfony > 2.8 (by @carlosmasip)
+- Patch: Fix deprecation in configuration
+- Patch: Enable Symfony 3.0 and PHP 7
+
 SlackBundle v1.3.0
 ==================
 - Feature: File upload service now accepts an array of channels, string usage is deprecated

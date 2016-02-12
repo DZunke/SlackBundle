@@ -27,7 +27,7 @@ class Configuration implements ConfigurationInterface
             ->end()
             ->integerNode('limit_retries')
                 ->defaultValue(3)
-                ->cannotBeEmpty()
+                ->min(1)
                 ->info('The amount of retries for the connection if the Rate Limits of Slack are reached')
             ->end()
         ->end();
