@@ -16,7 +16,7 @@ $client = new \DZunke\SlackBundle\Slack\Client($connection);
 $response = $client->send(
     \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
     [
-        'identity => $identity
+        'identity' => $identity
         'channel' => '#slack-testing',
         'text'    => 'Good Morning, please make sure u got a coffee before working!'
     ]
