@@ -26,4 +26,10 @@
         "psr-0": { "DZunke\\SlackBundle": "" }
     },
     "target-dir": "DZunke/SlackBundle"
+    "target-dir": "DZunke/SlackBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-dev": "2.0-dev"
+        }
+    }
 }
