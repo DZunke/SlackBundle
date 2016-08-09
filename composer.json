@@ -15,17 +15,13 @@
         "exclude": ["/Tests"]
     },
     "require": {
-        "php": ">=5.4",
-        "symfony/symfony": "~2.3|~3.0",
-        "guzzle/guzzle": ">=3.7.0"
         "php": ">=5.6",
         "symfony/symfony": "~2.8|~3.0",
-        "guzzlehttp/guzzle": ">=6.0.0"
+        "guzzlehttp/guzzle": "^6.2.1"
     },
     "autoload": {
         "psr-0": { "DZunke\\SlackBundle": "" }
     },
-    "target-dir": "DZunke/SlackBundle"
     "target-dir": "DZunke/SlackBundle",
     "extra": {
         "branch-alias": {
