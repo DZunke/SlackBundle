@@ -90,11 +90,11 @@ class Response
     }
 
     /**
-     * @param \Guzzle\Http\Message\Response $guzzleResponse
+     * @param \GuzzleHttp\Psr7\Response $guzzleResponse
      * @param ActionsInterface              $action
      * @return Response
      */
-    public static function parseGuzzleResponse(\Guzzle\Http\Message\Response $guzzleResponse, ActionsInterface $action)
+    public static function parseGuzzleResponse(\GuzzleHttp\Psr7\Response $guzzleResponse, ActionsInterface $action)
     {
         $response = new self();
 
