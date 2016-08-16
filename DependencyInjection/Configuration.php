@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
         $rootNode    = $treeBuilder->root('d_zunke_slack');
         $rootNode->children()
             ->scalarNode('endpoint')
-                ->defaultValue('slack.com/api/')
+                ->defaultValue('https://slack.com/api')
             ->end()
             ->scalarNode('token')
                 ->isRequired()
