@@ -105,7 +105,7 @@ class Response
             return $response;
         }
 
-        $responseArray = json_decode($guzzleResponse->getBody(true), true);
+        $responseArray = json_decode($guzzleResponse->getBody()->getContents(), true);
 
         $response->setStatus($responseArray['ok']);
 
