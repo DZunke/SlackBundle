@@ -5,9 +5,8 @@ namespace DZunke\SlackBundle\Slack;
 use DZunke\SlackBundle\Slack\Client\Actions;
 use DZunke\SlackBundle\Slack\Client\Connection;
 use DZunke\SlackBundle\Slack\Client\Response;
-use Guzzle\Common\Event;
-use Guzzle\Http\Client as GuzzleClient;
-use Guzzle\Http\Url;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Psr7\Uri;
 
 class Client
 {
@@ -27,7 +26,8 @@ class Client
 
     /**
      * @param string $action
-     * @param array  $parameter
+     * @param array $parameter
+     *
      * @return Response|bool
      */
     public function send($action, array $parameter = [])
@@ -39,7 +39,7 @@ class Client
         $action = Actions::loadClass($action);
         $action->setParameter($parameter);
 
-        $url = $this->buildRequestUrl(
+        $url = $this->buildUri(
             $action,
             array_merge(
                 ['token' => $this->connection->getToken()],
@@ -69,34 +69,31 @@ class Client
 
     /**
      * @param Actions\ActionsInterface $action
-     * @param array                    $requestParams
-     * @return Url
+     * @param array $requestParams
+     *
+     * @return Uri
      */
-    protected function buildRequestUrl(Actions\ActionsInterface $action, array $requestParams)
+    protected function buildUri(Actions\ActionsInterface $action, array $requestParams)
     {
-        $url = new Url('https', $this->connection->getEndpoint());
-        $url->setPath($action->getAction());
-        $url->setQuery($requestParams);
+        $uri = new Uri(
+            $this->connection->getEndpoint()
+            . '/'
+            . $action->getAction()
+            . '?' . http_build_query($requestParams)
+        );
 
-        return $url;
+        return $uri;
     }
 
     /**
-     * @param Url $url
-     * @return \Guzzle\Http\Message\Response
+     * @param Uri $uri
+     *
+     * @return \GuzzleHttp\Psr7\Response
      */
-    protected function executeRequest(Url $url)
+    protected function executeRequest(Uri $uri)
     {
         $guzzle = new GuzzleClient();
-        $guzzle->getEventDispatcher()->addListener(
-            'request.error',
-            function (Event $event) {
-                if ($event['response']->getStatusCode() != 200) {
-                    $event->stopPropagation();
-                }
-            }
-        );
 
-        return $guzzle->createRequest('GET', $url)->send();
+        return $guzzle->request('GET', $uri);
     }
 }
