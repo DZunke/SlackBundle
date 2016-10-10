@@ -90,11 +90,11 @@ class Response
     }
 
     /**
-     * @param \Guzzle\Http\Message\Response $guzzleResponse
+     * @param \GuzzleHttp\Psr7\Response $guzzleResponse
      * @param ActionsInterface              $action
      * @return Response
      */
-    public static function parseGuzzleResponse(\Guzzle\Http\Message\Response $guzzleResponse, ActionsInterface $action)
+    public static function parseGuzzleResponse(\GuzzleHttp\Psr7\Response $guzzleResponse, ActionsInterface $action)
     {
         $response = new self();
 
@@ -105,7 +105,7 @@ class Response
             return $response;
         }
 
-        $responseArray = json_decode($guzzleResponse->getBody(true), true);
+        $responseArray = json_decode($guzzleResponse->getBody()->getContents(), true);
 
         $response->setStatus($responseArray['ok']);
 
