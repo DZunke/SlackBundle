@@ -31,7 +31,7 @@ class Configuration implements ConfigurationInterface
                 ->info('The amount of retries for the connection if the Rate Limits of Slack are reached')
             ->end()
             ->booleanNode('verify_ssl')
-                ->defaultFalse()
+                ->defaultTrue()
             ->end()
         ->end();
 
