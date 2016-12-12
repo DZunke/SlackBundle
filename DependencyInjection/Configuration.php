@@ -30,6 +30,9 @@ class Configuration implements ConfigurationInterface
                 ->min(1)
                 ->info('The amount of retries for the connection if the Rate Limits of Slack are reached')
             ->end()
+            ->booleanNode('verify_ssl')
+                ->defaultFalse()
+            ->end()
         ->end();
 
         $rootNode->append($this->addIdentities());

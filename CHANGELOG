@@ -1,3 +1,7 @@
+SlackBundle v2.1.0
+==================
+- Add Support to disable SSL Verification at Guzzle Client
+
 SlackBundle v2.0.0
 ==================
 - (NOT BC) Feature: Upgrade to Guzzle 6 (thanks for Support @alister)

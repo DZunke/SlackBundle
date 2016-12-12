@@ -49,6 +49,7 @@ class DZunkeSlackExtension extends Extension
         $definition->addMethodCall('setEndpoint', [$config['endpoint']]);
         $definition->addMethodCall('setToken', [$config['token']]);
         $definition->addMethodCall('setLimitRetries', [$config['limit_retries']]);
+        $definition->addMethodCall('setVerifySsl', [$config['verify_ssl']]);
     }
 
 }
