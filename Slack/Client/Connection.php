@@ -20,6 +20,11 @@ class Connection
     protected $limitRetries = 3;
 
     /**
+     * @var bool
+     */
+    private $verifySsl = true;
+
+    /**
      * @param string $endpoint
      * @return $this
      */
@@ -74,6 +79,26 @@ class Connection
     public function getLimitRetries()
     {
         return $this->limitRetries;
+    }
+
+    /**
+     * @param bool $verifySsl
+     *
+     * @return $this
+     */
+    public function setVerifySsl($verifySsl)
+    {
+        $this->verifySsl = (bool) $verifySsl;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getVerifySsl()
+    {
+        return $this->verifySsl;
     }
 
     /**

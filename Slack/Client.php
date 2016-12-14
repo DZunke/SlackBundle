@@ -92,7 +92,7 @@ class Client
      */
     protected function executeRequest(Uri $uri)
     {
-        $guzzle = new GuzzleClient();
+        $guzzle = new GuzzleClient(['verify' => $this->connection->getVerifySsl()]);
 
         return $guzzle->request('GET', $uri);
     }
