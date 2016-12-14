@@ -4,6 +4,7 @@
 d_zunke_slack:
     endpoint:             slack.com/api/
     token:                null # Required
+    verify_ssl:           true # ssl verification at guzzle client
 
     # The amount of retries for the connection if the Rate Limits of Slack are reached
     limit_retries:        3
