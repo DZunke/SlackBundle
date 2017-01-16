@@ -5,6 +5,7 @@ d_zunke_slack:
     endpoint:             slack.com/api/
     token:                null # Required
     verify_ssl:           true # ssl verification at guzzle client
+    use_http_post:        false # give the ability to send request as HTTP POST
 
     # The amount of retries for the connection if the Rate Limits of Slack are reached
     limit_retries:        3

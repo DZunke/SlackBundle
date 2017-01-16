@@ -2,6 +2,8 @@
 
 namespace DZunke\SlackBundle\Slack\Client;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class Connection
 {
     /**
@@ -25,15 +27,9 @@ class Connection
     private $verifySsl = true;
 
     /**
-     * @param string $endpoint
-     * @return $this
+     * @var string
      */
-    public function setEndpoint($endpoint)
-    {
-        $this->endpoint = (string)$endpoint;
-
-        return $this;
-    }
+    private $httpMethod = Request::METHOD_GET;
 
     /**
      * @return string
@@ -44,12 +40,13 @@ class Connection
     }
 
     /**
-     * @param string $token
+     * @param string $endpoint
+     *
      * @return $this
      */
-    public function setToken($token)
+    public function setEndpoint($endpoint)
     {
-        $this->token = (string)$token;
+        $this->endpoint = (string)$endpoint;
 
         return $this;
     }
@@ -63,12 +60,13 @@ class Connection
     }
 
     /**
-     * @param int $retries
+     * @param string $token
+     *
      * @return $this
      */
-    public function setLimitRetries($retries)
+    public function setToken($token)
     {
-        $this->limitRetries = (int)$retries;
+        $this->token = (string)$token;
 
         return $this;
     }
@@ -82,13 +80,13 @@ class Connection
     }
 
     /**
-     * @param bool $verifySsl
+     * @param int $retries
      *
      * @return $this
      */
-    public function setVerifySsl($verifySsl)
+    public function setLimitRetries($retries)
     {
-        $this->verifySsl = (bool) $verifySsl;
+        $this->limitRetries = (int)$retries;
 
         return $this;
     }
@@ -99,6 +97,46 @@ class Connection
     public function getVerifySsl()
     {
         return $this->verifySsl;
+    }
+
+    /**
+     * @param bool $verifySsl
+     *
+     * @return $this
+     */
+    public function setVerifySsl($verifySsl)
+    {
+        $this->verifySsl = (bool)$verifySsl;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHttpMethod()
+    {
+        return $this->httpMethod;
+    }
+
+    /**
+     * @return $this
+     */
+    public function isHttpGetMethod()
+    {
+        $this->httpMethod = Request::METHOD_GET;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function isHttpPostMethod()
+    {
+        $this->httpMethod = Request::METHOD_POST;
+
+        return $this;
     }
 
     /**

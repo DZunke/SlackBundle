@@ -11,6 +11,9 @@ $connection = new \DZunke\SlackBundle\Slack\Client\Connection();
 $connection->setEndpoint('slack.com/api/');
 $connection->setToken('YOUR API TOKEN');
 
+# Switch from GET to POST Method
+# $connection->isHttpPostMethod();
+
 $client = new \DZunke\SlackBundle\Slack\Client($connection);
 
 $response = $client->send(

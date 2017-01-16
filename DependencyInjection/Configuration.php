@@ -33,6 +33,9 @@ class Configuration implements ConfigurationInterface
             ->booleanNode('verify_ssl')
                 ->defaultTrue()
             ->end()
+            ->booleanNode('use_http_post')
+                ->defaultFalse()
+            ->end()
         ->end();
 
         $rootNode->append($this->addIdentities());

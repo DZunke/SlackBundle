@@ -94,6 +94,6 @@ class Client
     {
         $guzzle = new GuzzleClient(['verify' => $this->connection->getVerifySsl()]);
 
-        return $guzzle->request('GET', $uri);
+        return $guzzle->request($this->connection->getHttpMethod(), $uri);
     }
 }
