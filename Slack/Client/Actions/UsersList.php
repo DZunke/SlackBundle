@@ -61,7 +61,7 @@ class UsersList implements ActionsInterface
                 'name' => $user['name'],
                 'deleted' => (bool)$user['deleted'],
                 'real_name' => $user['profile']['real_name'],
-                'email' => $user['profile']['email'],
+                'email' => isset($user['profile']['email']) ? $user['profile']['email'] : null,
                 'is_bot' => (bool)$user['is_bot'],
                 'presence' => isset($user['presence']) ? $user['presence'] : null
             ];

@@ -1,3 +1,9 @@
+SlackBundle v2.2.0
+==================
+- Feature: Add Support to send Requests as POST instead of GET
+- Patch: Fix UsersList-Action, users email could be empty (by @mediafigaro)
+- Patch: Fix channel history (found in fork by @elmpp)
+
 SlackBundle v2.1.0
 ==================
 - Add Support to disable SSL Verification at Guzzle Client

@@ -133,7 +133,7 @@ class Channels
                 $objMsg->setType(isset($message['subtype']) ? $message['subtype'] : $message['type']);
                 $objMsg->setUserId(isset($message['user']) ? $message['user'] : null);
                 $objMsg->setUsername(isset($message['username']) ? $message['username'] : null);
-                $objMsg->setContent($message['test']);
+                $objMsg->setContent($message['text']);
 
                 $repository[] = $objMsg;
             }
