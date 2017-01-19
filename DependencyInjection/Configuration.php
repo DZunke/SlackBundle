@@ -63,7 +63,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('icon_url')
                     ->defaultNull()
-                    ->info('An Url to a specific picture to use as Icon')
+                    ->info('An Url to a specific picture to use as Icon, be sure no emoji is set')
                 ->end()
                 ->scalarNode('icon_emoji')
                     ->defaultNull()
