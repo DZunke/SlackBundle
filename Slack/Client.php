@@ -7,6 +7,7 @@ use DZunke\SlackBundle\Slack\Client\Connection;
 use DZunke\SlackBundle\Slack\Client\Response;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Uri;
+use Symfony\Component\HttpFoundation\Request;
 
 class Client
 {
@@ -39,17 +40,19 @@ class Client
         $action = Actions::loadClass($action);
         $action->setParameter($parameter);
 
-        $url = $this->buildUri(
-            $action,
-            array_merge(
-                ['token' => $this->connection->getToken()],
-                $action->getRenderedRequestParams()
-            )
+        $parsedRequestParams = array_merge(
+            ['token' => $this->connection->getToken()],
+            $action->getRenderedRequestParams()
         );
+
+        $url = $this->buildUri($action, $parsedRequestParams);
 
         $tries = 1;
         do {
-            $response = $this->executeRequest($url);
+            $response = $this->executeRequest(
+                $url,
+                $this->connection->getHttpMethod() === Request::METHOD_POST ? $parsedRequestParams : null
+            );
             $response = Response::parseGuzzleResponse($response, $action);
 
             if (
@@ -75,25 +78,29 @@ class Client
      */
     protected function buildUri(Actions\ActionsInterface $action, array $requestParams)
     {
-        $uri = new Uri(
-            $this->connection->getEndpoint()
-            . '/'
-            . $action->getAction()
-            . '?' . http_build_query($requestParams)
-        );
+        $uri = $this->connection->getEndpoint() . '/' . $action->getAction();
 
-        return $uri;
+        if ($this->connection->getHttpMethod() === Request::METHOD_GET) {
+            $uri .= '?' . http_build_query($requestParams);
+        }
+
+        return new Uri($uri);
     }
 
     /**
      * @param Uri $uri
+     * @param array $params form post values
      *
      * @return \GuzzleHttp\Psr7\Response
      */
-    protected function executeRequest(Uri $uri)
+    protected function executeRequest(Uri $uri, array $params = null)
     {
         $guzzle = new GuzzleClient(['verify' => $this->connection->getVerifySsl()]);
 
-        return $guzzle->request($this->connection->getHttpMethod(), $uri);
+        return $guzzle->request(
+            $this->connection->getHttpMethod(),
+            $uri,
+            null !== $params ? ['form_params' => $params] : []
+        );
     }
 }

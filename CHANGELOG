@@ -1,6 +1,7 @@
 SlackBundle v2.3.0
 ==================
 - Feature: Add channel.create action
+- Bug: Fixed dumb error with post requesting
 
 SlackBundle v2.2.0
 ==================
