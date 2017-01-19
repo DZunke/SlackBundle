@@ -58,6 +58,9 @@ $service->getId($channelName);
 # list all available channels in your team
 $service->listAll();
 
+# creates a channel
+$service->create($name);
+
 # get information about just a single channel
 $service->info($channelId);
 

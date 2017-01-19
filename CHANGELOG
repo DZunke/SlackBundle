@@ -1,3 +1,7 @@
+SlackBundle v2.3.0
+==================
+- Feature: Add channel.create action
+
 SlackBundle v2.2.0
 ==================
 - Feature: Add Support to send Requests as POST instead of GET

@@ -24,6 +24,20 @@ Available Parameters:
 protected $parameter = [];
 ```
 
+## channels.create
+
+[Slack Documentation](https://api.slack.com/methods/channels.create)
+
+Constant: \DZunke\SlackBundle\Slack\Client::ACTION_CHANNELS_CREATE
+
+Available Parameters:
+
+``` php
+protected $parameter = [
+   'name' => null
+];
+```
+
 ## channels.info
 
 [Slack Documentation](https://api.slack.com/methods/channels.info)
