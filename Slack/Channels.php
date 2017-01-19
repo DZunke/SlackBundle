@@ -79,6 +79,21 @@ class Channels
     }
 
     /**
+     * @param string $name
+     *
+     * @return bool|Client\Response
+     */
+    public function create($name)
+    {
+        return $this->client->send(
+            Actions::ACTION_CHANNELS_CREATE,
+            [
+                'name' => trim($name)
+            ]
+        );
+    }
+
+    /**
      * @param string $channel The Id of the Channel - NOT the Name. self::getId() if needed
      * @param string $topic
      * @return $this|Client\Response|bool
