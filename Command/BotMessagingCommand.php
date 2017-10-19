@@ -15,14 +15,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class BotMessagingCommand extends ContainerAwareCommand
 {
+    protected static $defaultName = 'slack:run-bot';
 
     const PROCESS_ITERATION_SLEEP = 1;
 
     protected function configure()
     {
         $this
-            ->setName('dzunke:slack:run-bot')
-            ->setAliases(['slack:run-bot'])
+            ->setName(static::$defaultName)
             ->setDescription('Running the Bot-User to a Channel')
             ->addArgument(
                 'channel',
