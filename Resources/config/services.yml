@@ -21,3 +21,14 @@ services:
     dz.slack.users:
         class: DZunke\SlackBundle\Slack\Users
         arguments: ["@dz.slack.client"]
+
+    DZunke\SlackBundle\Command\BotMessagingCommand:
+        tags: ['console.command']
+    DZunke\SlackBundle\Command\ChangeChannelsTopicCommand:
+        tags: ['console.command']
+    DZunke\SlackBundle\Command\DebugCommand:
+        tags: ['console.command']
+    DZunke\SlackBundle\Command\MessageCommand:
+        tags: ['console.command']
+    DZunke\SlackBundle\Command\UsersCommand:
+        tags: ['console.command']

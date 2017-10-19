@@ -3,13 +3,13 @@
 namespace DZunke\SlackBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class UsersCommand extends ContainerAwareCommand
 {
-
     protected function configure()
     {
         $this
@@ -58,10 +58,9 @@ class UsersCommand extends ContainerAwareCommand
                 }
             );
 
-            $table = $this->getHelper('table');
+            $table = new Table($output);
             $table->setHeaders(array_keys(reset($response)))->setRows($response);
             $table->render($output);
-
 
         } catch (\Exception $e) {
             $output->writeln(
