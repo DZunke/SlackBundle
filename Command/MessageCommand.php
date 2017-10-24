@@ -2,14 +2,22 @@
 
 namespace DZunke\SlackBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use DZunke\SlackBundle\Slack\Messaging;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class MessageCommand extends ContainerAwareCommand
+class MessageCommand extends Command
 {
     protected static $defaultName = 'slack:message';
+    private $messenger;
+
+    public function __construct(Messaging $messenger)
+    {
+        $this->messenger = $messenger;
+        parent::__construct();
+    }
 
     protected function configure()
     {
@@ -24,8 +32,7 @@ class MessageCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $messenger = $this->getContainer()->get('dz.slack.messaging');
-            $response  = $messenger->message(
+            $response = $this->messenger->message(
                 $input->getArgument('channel'),
                 $input->getArgument('message'),
                 $input->getArgument('username')

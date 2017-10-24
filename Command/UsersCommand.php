@@ -2,14 +2,27 @@
 
 namespace DZunke\SlackBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use DZunke\SlackBundle\Slack\Users;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class UsersCommand extends ContainerAwareCommand
+class UsersCommand extends Command
 {
     protected static $defaultName = 'slack:users';
+  
+    /**
+     * @var Users
+     */
+    private $api;
+
+    public function __construct(Users $users)
+    {
+        $this->api = $users;
+        parent::__construct();
+    }
 
     protected function configure()
     {
@@ -26,20 +39,18 @@ class UsersCommand extends ContainerAwareCommand
         $formatter = $this->getHelper('formatter');
 
         try {
-            $api = $this->getContainer()->get('dz.slack.users');
-
             if ($input->getOption('only-active')) {
-                $response = $api->getActiveUsers();
+                $response = $this->api->getActiveUsers();
             } elseif ($input->getOption('only-deleted')) {
-                $response = $api->getDeletedUsers();
+                $response = $this->api->getDeletedUsers();
             } elseif ($input->getOption('user')) {
-                $response = $api->getUser($input->getOption('user'));
+                $response = $this->api->getUser($input->getOption('user'));
 
                 if (is_array($response)) {
                     $response = [$response['name'] => $response];
                 }
             } else {
-                $response = $api->getUsers();
+                $response = $this->api->getUsers();
             }
 
             if (empty($response)) {
@@ -58,10 +69,9 @@ class UsersCommand extends ContainerAwareCommand
                 }
             );
 
-            $table = $this->getHelper('table');
+            $table = new Table($output);
             $table->setHeaders(array_keys(reset($response)))->setRows($response);
             $table->render($output);
-
 
         } catch (\Exception $e) {
             $output->writeln(

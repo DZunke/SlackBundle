@@ -3,13 +3,13 @@
 namespace DZunke\SlackBundle\Command;
 
 use DZunke\SlackBundle\Slack\Client;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class DebugCommand extends ContainerAwareCommand
+class DebugCommand extends Command
 {
     protected static $defaultName = 'slack:debug';
 
@@ -28,6 +28,12 @@ class DebugCommand extends ContainerAwareCommand
      */
     protected $client;
 
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+        parent::__construct();
+    }
+
     protected function configure()
     {
         $this
@@ -40,7 +46,6 @@ class DebugCommand extends ContainerAwareCommand
     {
         $this->input  = $input;
         $this->output = $output;
-        $this->client = $this->getContainer()->get('dz.slack.client');
 
         $config = $this->getContainer()->getParameter('d_zunke_slack.config');
 
