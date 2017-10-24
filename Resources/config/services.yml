@@ -24,20 +24,25 @@ services:
 
     DZunke\SlackBundle\Command\BotMessagingCommand:
         arguments: ["@dz.slack.channels", "@event_dispatcher"]
-        tags: ['console.command']
+        tags:
+            - { name: console.command, command: slack:run-bot }
 
     DZunke\SlackBundle\Command\ChangeChannelsTopicCommand:
         arguments: ["@dz.slack.channels"]
-        tags: ['console.command']
+        tags:
+            - { name: console.command, command: slack:channels:topic }
 
     DZunke\SlackBundle\Command\DebugCommand:
         arguments: ["@dz.slack.client"]
-        tags: ['console.command']
+        tags:
+            - { name: console.command, command: slack:debug }
 
     DZunke\SlackBundle\Command\MessageCommand:
         arguments: ["@dz.slack.messaging"]
-        tags: ['console.command']
+        tags:
+            - { name: console.command, command: slack:message }
 
     DZunke\SlackBundle\Command\UsersCommand:
         arguments: ["@dz.slack.users"]
-        tags: ['console.command']
+        tags:
+            - { name: console.command, command: slack:users }
