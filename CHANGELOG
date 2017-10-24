@@ -1,3 +1,9 @@
+SlackBundle unplanned
+==================
+- Feature: Commands compatible to Symfony 3.4 (by @alister)
+- (NOT BC) Feature: Remove old command prefixes (see v1.3) (by @alister)
+- Patch: removed different typos (by @alister)
+
 SlackBundle v2.3.0
 ==================
 - Feature: Add channel.create action
