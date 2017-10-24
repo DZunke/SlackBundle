@@ -10,12 +10,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ChangeChannelsTopicCommand extends ContainerAwareCommand
 {
+    protected static $defaultName = 'slack:channels:topic';
 
     protected function configure()
     {
         $this
-            ->setName('dzunke:slack:channels:topic')
-            ->setAliases(['slack:channels:topic'])
+            ->setName(static::$defaultName)
             ->setDescription('Changing the Topic of a Channel')
             ->addOption('discover', 'd', InputOption::VALUE_NONE, 'channel name is given, so discover the id')
             ->addArgument('channel', InputArgument::REQUIRED, 'an existing channel in your team to change the topic')

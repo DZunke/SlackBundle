@@ -9,12 +9,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class UsersCommand extends ContainerAwareCommand
 {
+    protected static $defaultName = 'slack:users';
 
     protected function configure()
     {
         $this
-            ->setName('dzunke:slack:users')
-            ->setAliases(['slack:users'])
+            ->setName(static::$defaultName)
             ->setDescription('work with the users of your team')
             ->addOption('only-active', 'a', InputOption::VALUE_NONE, 'lists only active users')
             ->addOption('only-deleted', 'd', InputOption::VALUE_NONE, 'lists only deleted users')
