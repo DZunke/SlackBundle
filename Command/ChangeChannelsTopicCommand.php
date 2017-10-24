@@ -2,14 +2,25 @@
 
 namespace DZunke\SlackBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use DZunke\SlackBundle\Slack\Channels;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ChangeChannelsTopicCommand extends ContainerAwareCommand
+class ChangeChannelsTopicCommand extends Command
 {
+    /**
+     * @var Channels
+     */
+    private $channels;
+
+    public function __construct(Channels $channels)
+    {
+        $this->channels = $channels;
+        parent::__construct();
+    }
 
     protected function configure()
     {
@@ -25,14 +36,13 @@ class ChangeChannelsTopicCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $channels = $this->getContainer()->get('dz.slack.channels');
             if ($input->getOption('discover')) {
-                $channelId = $channels->getId($input->getArgument('channel'));
+                $channelId = $this->channels->getId($input->getArgument('channel'));
             } else {
                 $channelId = $input->getArgument('channel');
             }
 
-            $response = $channels->setTopic(
+            $response = $this->channels->setTopic(
                 $channelId,
                 $input->getArgument('topic')
             );

@@ -23,12 +23,21 @@ services:
         arguments: ["@dz.slack.client"]
 
     DZunke\SlackBundle\Command\BotMessagingCommand:
+        arguments: ["@dz.slack.channels", "@event_dispatcher"]
         tags: ['console.command']
+
     DZunke\SlackBundle\Command\ChangeChannelsTopicCommand:
+        arguments: ["@dz.slack.channels"]
         tags: ['console.command']
+
     DZunke\SlackBundle\Command\DebugCommand:
+        arguments: ["@dz.slack.client"]
         tags: ['console.command']
+
     DZunke\SlackBundle\Command\MessageCommand:
+        arguments: ["@dz.slack.messaging"]
         tags: ['console.command']
+
     DZunke\SlackBundle\Command\UsersCommand:
+        arguments: ["@dz.slack.users"]
         tags: ['console.command']

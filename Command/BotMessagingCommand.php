@@ -4,19 +4,37 @@ namespace DZunke\SlackBundle\Command;
 
 use DZunke\SlackBundle\Event;
 use DZunke\SlackBundle\Events;
+use DZunke\SlackBundle\Slack\Channels;
 use DZunke\SlackBundle\Slack\Client;
 use DZunke\SlackBundle\Slack\Entity\Message;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class BotMessagingCommand extends ContainerAwareCommand
+class BotMessagingCommand extends Command
 {
-
     const PROCESS_ITERATION_SLEEP = 1;
+
+    /**
+     * @var Channels
+     */
+    private $channels;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    public function __construct(Channels $channels, EventDispatcherInterface $eventDispatcher)
+    {
+        $this->channels = $channels;
+        $this->eventDispatcher = $eventDispatcher;
+        parent::__construct();
+    }
 
     protected function configure()
     {
@@ -27,7 +45,7 @@ class BotMessagingCommand extends ContainerAwareCommand
             ->addArgument(
                 'channel',
                 InputArgument::REQUIRED,
-                'Channel wo Watch over'
+                'Channel to Watch over'
             );
     }
 
@@ -35,7 +53,7 @@ class BotMessagingCommand extends ContainerAwareCommand
     {
         $logger = new Logger(new StreamHandler('php://output'));
 
-        $channel = $this->getContainer()->get('dz.slack.channels')->getId($input->getArgument('channel'));
+        $channel = $this->channels->getId($input->getArgument('channel'));
         if (empty($channel)) {
             $logger->error('channel "' . $channel . '" does not exists');
             return;
@@ -45,7 +63,7 @@ class BotMessagingCommand extends ContainerAwareCommand
         while (true) {
             
             try {
-                $latestMessages = $this->getContainer()->get('dz.slack.channels')->history($channel, $lastTimestamp);
+                $latestMessages = $this->channels->history($channel, $lastTimestamp);
 
                 foreach ($latestMessages as $message) {
                     if ($message->isBot() === true) {
@@ -69,7 +87,7 @@ class BotMessagingCommand extends ContainerAwareCommand
 
                     $logger->debug('Dispatching "' . $event . '"');
 
-                    $this->getContainer()->get('event_dispatcher')->dispatch(
+                    $this->eventDispatcher->dispatch(
                         $event,
                         new Events\MessageEvent($channel, $message)
                     );
