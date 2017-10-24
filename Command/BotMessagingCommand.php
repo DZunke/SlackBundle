@@ -19,6 +19,8 @@ class BotMessagingCommand extends Command
 {
     const PROCESS_ITERATION_SLEEP = 1;
 
+    protected static $defaultName = 'slack:run-bot';    
+
     /**
      * @var Channels
      */
@@ -39,8 +41,7 @@ class BotMessagingCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('dzunke:slack:run-bot')
-            ->setAliases(['slack:run-bot'])
+            ->setName(static::$defaultName)
             ->setDescription('Running the Bot-User to a Channel')
             ->addArgument(
                 'channel',

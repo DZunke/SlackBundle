@@ -55,7 +55,7 @@ class Messaging
     public function message($channel, $message, $identity, array $attachments = [])
     {
         if (!$this->identityBag->has($identity)) {
-            throw new \InvalidArgumentException('identiy "' . $identity . '" is not registered');
+            throw new \InvalidArgumentException('identity "' . $identity . '" is not registered');
         }
 
         return $this->client->send(

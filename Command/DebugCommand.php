@@ -11,6 +11,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DebugCommand extends Command
 {
+    protected static $defaultName = 'slack:debug';
+
     /**
      * @var InputInterface
      */
@@ -35,8 +37,7 @@ class DebugCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('dzunke:slack:debug')
-            ->setAliases(['slack:debug'])
+            ->setName(static::$defaultName)
             ->setDescription('Gives some Debug Informations about the SlackBundle');
     }
 
