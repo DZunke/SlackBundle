@@ -22,7 +22,7 @@ class Messaging
      * @param Client      $client
      * @param IdentityBag $identityBag
      */
-    public function  __construct(Client $client, IdentityBag $identityBag)
+    public function __construct(Client $client, IdentityBag $identityBag)
     {
         $this->client      = $client;
         $this->identityBag = $identityBag;
@@ -49,34 +49,37 @@ class Messaging
      * @param string       $message
      * @param string       $identity
      * @param Attachment[] $attachments
+     * @param array        $clientOptions
+     *
      * @return Client\Response|bool
+     *
      * @throws \InvalidArgumentException
      */
-    public function message($channel, $message, $identity, array $attachments = [])
+    public function message($channel, $message, $identity, array $attachments = [], array $clientOptions = [])
     {
         if (!$this->identityBag->has($identity)) {
-            throw new \InvalidArgumentException('identity "' . $identity . '" is not registered');
+            throw new \InvalidArgumentException(sprintf('identity "%s" is not registered', $identity));
         }
 
         return $this->client->send(
             Actions::ACTION_POST_MESSAGE,
-            [
+            array_merge([
                 'identity'    => $this->identityBag->get($identity),
                 'channel'     => $channel,
                 'text'        => $message,
-                'attachments' => $attachments
-            ],
-            $identity
+                'attachments' => $attachments,
+            ], $clientOptions)
         );
     }
 
 
     /**
-     * @param string|array  $channel    # String is DEPRECATED scince v1.3 - Deliver Array
-     * @param string        $title
-     * @param string        $file
-     * @param string|null   $comment
-     * @return Client\Response
+     * @param string|array $channel # String is DEPRECATED scince v1.3 - Deliver Array
+     * @param string       $title
+     * @param string       $file
+     * @param string|null  $comment
+     *
+     * @return Client\Response|false
      */
     public function upload($channel, $title, $file, $comment = null)
     {
