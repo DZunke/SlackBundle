@@ -3,6 +3,10 @@ SlackBundle unplanned
 - Feature: Commands compatible to Symfony 3.4 (by @alister)
 - (NOT BC) Feature: Remove old command prefixes (see v1.3) (by @alister)
 - Patch: removed different typos (by @alister)
+SlackBundle v2.4.0
+==================
+- Feature: Support for more fields in attachments and additional client options for Messaging::message() (by @pmishev=
+- Support for Symfony 4.0
 
 SlackBundle v2.3.0
 ==================
