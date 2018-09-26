@@ -83,15 +83,49 @@ class MessageAttachment
     protected $pretext;
 
     /**
-     * A Bunch of Fields that should be displayed as Attachement. They consist of the Fields:
+     * Optional footer text
+     *
+     * @var string
+     */
+    protected $footer;
+
+    /**
+     * Optional footer icon
+     *
+     * @var string
+     */
+    protected $footerIcon;
+
+    /**
+     * Optional timestamp
+     *
+     * @var int
+     */
+    protected $ts;
+
+    /**
+     * A Bunch of fields that should be displayed as Attachment. They consist of the fields:
      *
      * "title": The Header for this Field
-     * "value": The Textg for this Field, can be multiline
+     * "value": The Text for this Field, can be multiline
      * "short": boolean to indicate if the field is short enough to be displayed side-by-side
      *
      * @var array
      */
     protected $fields = [];
+
+    /**
+     * A Bunch of fields that should be displayed as button Attachment. They consist of the fields:
+     *
+     * "text": A UTF-8 string label for this button. Be brief but descriptive and actionable.
+     * "url": The fully qualified http or https URL to deliver users to. Invalid URLs will result in a message posted with the button omitted.
+     * "style": Optional - Setting to primary turns the button green and indicates the best forward action to take.
+     *          Providing danger turns the button red and indicates it some kind of destructive action.
+     *          Use sparingly. By default, buttons will use the UI's default text color.
+     *
+     * @var array
+     */
+    protected $actions = [];
 
     /**
      * @return string
@@ -103,6 +137,7 @@ class MessageAttachment
 
     /**
      * @param string $authorIcon
+     *
      * @return $this
      */
     public function setAuthorIcon($authorIcon)
@@ -122,6 +157,7 @@ class MessageAttachment
 
     /**
      * @param string $authorLink
+     *
      * @return $this
      */
     public function setAuthorLink($authorLink)
@@ -141,6 +177,7 @@ class MessageAttachment
 
     /**
      * @param string $authorName
+     *
      * @return $this
      */
     public function setAuthorName($authorName)
@@ -152,6 +189,7 @@ class MessageAttachment
 
     /**
      * @param string $color
+     *
      * @return $this
      */
     public function setColor($color)
@@ -171,6 +209,7 @@ class MessageAttachment
 
     /**
      * @param string $fallback
+     *
      * @return $this
      */
     public function setFallback($fallback)
@@ -198,6 +237,7 @@ class MessageAttachment
 
     /**
      * @param string $imageUrl
+     *
      * @return $this
      */
     public function setImageUrl($imageUrl)
@@ -209,6 +249,7 @@ class MessageAttachment
 
     /**
      * @param array $fields
+     *
      * @return $this
      */
     public function setFields(array $fields)
@@ -228,9 +269,9 @@ class MessageAttachment
     public function addField($title, $text, $scale = false)
     {
         $this->fields[] = [
-            'title' => (string)$title,
-            'value' => (string)$text,
-            'short' => $scale
+            'title' => (string) $title,
+            'value' => (string) $text,
+            'short' => $scale,
         ];
 
         return $this;
@@ -245,7 +286,47 @@ class MessageAttachment
     }
 
     /**
+     * @param array $actions
+     *
+     * @return $this
+     */
+    public function setActions(array $actions)
+    {
+        $this->actions = $actions;
+
+        return $this;
+    }
+
+    /**
+     * @param string $text
+     * @param string $url
+     * @param string $style
+     *
+     * @return $this
+     */
+    public function addAction($text, $url, $style = null)
+    {
+        $this->actions[] = [
+            'type' => 'button',
+            'text' => (string) $text,
+            'url' => (string) $url,
+            'style' => (string) $style,
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getActions()
+    {
+        return $this->actions;
+    }
+
+    /**
      * @param string $pretext
+     *
      * @return $this
      */
     public function setPretext($pretext)
@@ -265,6 +346,7 @@ class MessageAttachment
 
     /**
      * @param string $text
+     *
      * @return $this
      */
     public function setText($text)
@@ -292,6 +374,7 @@ class MessageAttachment
 
     /**
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle($title)
@@ -311,6 +394,7 @@ class MessageAttachment
 
     /**
      * @param string $titleLink
+     *
      * @return $this
      */
     public function setTitleLink($titleLink)
@@ -330,6 +414,7 @@ class MessageAttachment
 
     /**
      * @param string $thumbUrl
+     *
      * @return $this
      */
     public function setThumbUrl($thumbUrl)
@@ -337,6 +422,54 @@ class MessageAttachment
         $this->thumbUrl = $thumbUrl;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFooter()
+    {
+        return $this->footer;
+    }
+
+    /**
+     * @param string $footer
+     */
+    public function setFooter($footer)
+    {
+        $this->footer = $footer;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFooterIcon()
+    {
+        return $this->footerIcon;
+    }
+
+    /**
+     * @param string $footerIcon
+     */
+    public function setFooterIcon($footerIcon)
+    {
+        $this->footerIcon = $footerIcon;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTs()
+    {
+        return $this->ts;
+    }
+
+    /**
+     * @param int $ts
+     */
+    public function setTs($ts)
+    {
+        $this->ts = $ts;
     }
 
     /**
@@ -357,6 +490,10 @@ class MessageAttachment
             'fields'  => $this->getFields(),
             'image_url' => $this->getImageUrl(),
             'thumb_url' => $this->getThumbUrl(),
+            'footer' => $this->getFooter(),
+            'footer_icon' => $this->getFooterIcon(),
+            'ts' => $this->getTs(),
+            'actions'  => $this->getActions(),
         ];
     }
 }
