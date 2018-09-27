@@ -29,26 +29,31 @@ services:
         arguments: ["@dz.slack.client"]
 
     DZunke\SlackBundle\Command\BotMessagingCommand:
+        class: DZunke\SlackBundle\Command\BotMessagingCommand
         arguments: ["@dz.slack.channels", "@event_dispatcher"]
         tags:
             - { name: console.command, command: slack:run-bot }
 
     DZunke\SlackBundle\Command\ChangeChannelsTopicCommand:
+        class: DZunke\SlackBundle\Command\ChangeChannelsTopicCommand
         arguments: ["@dz.slack.channels"]
         tags:
             - { name: console.command, command: slack:channels:topic }
 
     DZunke\SlackBundle\Command\DebugCommand:
+        class: DZunke\SlackBundle\Command\DebugCommand
         arguments: ["@dz.slack.client"]
         tags:
             - { name: console.command, command: slack:debug }
 
     DZunke\SlackBundle\Command\MessageCommand:
+        class: DZunke\SlackBundle\Command\MessageCommand
         arguments: ["@dz.slack.messaging"]
         tags:
             - { name: console.command, command: slack:message }
 
     DZunke\SlackBundle\Command\UsersCommand:
+        class: DZunke\SlackBundle\Command\UsersCommand
         arguments: ["@dz.slack.users"]
         tags:
             - { name: console.command, command: slack:users }
