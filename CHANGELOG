@@ -1,3 +1,7 @@
+SlackBundle v2.5.0
+==================
+- Feature: Removed symfony/symfony as required package by splitting requirements (by @makasim)
+
 SlackBundle v2.4.1
 ==================
 - FIX: Symfony 2.8 support was defect by removed classes in services.yml
