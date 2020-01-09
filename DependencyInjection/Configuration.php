@@ -54,7 +54,6 @@ class Configuration implements ConfigurationInterface
         /** @var $connectionNode ArrayNodeDefinition */
         $microservicesNode = $node->requiresAtLeastOneElement()
             ->useAttributeAsKey('username')
-            ->cannotBeEmpty()
             ->info('Usernames to use for Communication inside the Messaging')
             ->prototype('array');
 
