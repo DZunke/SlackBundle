@@ -28,6 +28,18 @@ services:
         public: true
         arguments: ["@dz.slack.client"]
 
+    DZunke\SlackBundle\Slack\Messaging\IdentityBag: '@dz.slack.identity_bag'
+
+    DZunke\SlackBundle\Slack\Client\Connection: '@dz.slack.connection'
+
+    DZunke\SlackBundle\Slack\Client: '@dz.slack.client'
+
+    DZunke\SlackBundle\Slack\Messaging: '@dz.slack.messaging'
+
+    DZunke\SlackBundle\Slack\Channels: '@dz.slack.channels'
+
+    DZunke\SlackBundle\Slack\Users: '@dz.slack.users'
+
     DZunke\SlackBundle\Command\BotMessagingCommand:
         class: DZunke\SlackBundle\Command\BotMessagingCommand
         arguments: ["@dz.slack.channels", "@event_dispatcher"]
