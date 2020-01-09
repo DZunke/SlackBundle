@@ -1,6 +1,7 @@
 SlackBundle v2.5.0
 ==================
 - Feature: Removed symfony/symfony as required package by splitting requirements (by @makasim)
+- FIX: Symfony 4 Warnings when calling public services (by @syunta)
 
 SlackBundle v2.4.1
 ==================
