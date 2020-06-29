@@ -14,7 +14,7 @@ class FilesUpload implements ActionsInterface
      * @var array
      */
     protected $parameter = [
-        'content'         => null,
+        'file'            => null,
         'filetype'        => null,
         'filename'        => null,
         'title'           => null,

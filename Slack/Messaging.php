@@ -96,13 +96,13 @@ class Messaging
         $params['title'] = $title;
         $params['initial_comment'] = $comment;
         $params['channels'] = implode(',', $channel);
-        $params['content'] = file_get_contents($file);
-        $params['fileType'] = mime_content_type($file);
         $params['filename'] = basename($file);
+        $params['file'] = fopen($file, 'r');
 
         return $this->client->send(
             Actions::ACTION_FILES_UPLOAD,
-            $params
+            $params,
+            true
         );
     }
 }
