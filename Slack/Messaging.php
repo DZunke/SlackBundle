@@ -72,16 +72,16 @@ class Messaging
         );
     }
 
-
     /**
      * @param string|array $channel # String is DEPRECATED scince v1.3 - Deliver Array
      * @param string       $title
      * @param string       $file
      * @param string|null  $comment
+     * @param string|null  $threadTs
      *
      * @return Client\Response|false
      */
-    public function upload($channel, $title, $file, $comment = null)
+    public function upload($channel, $title, $file, $comment = null, $threadTs = null)
     {
         if (!file_exists($file)) {
             return false;
@@ -98,6 +98,7 @@ class Messaging
         $params['channels'] = implode(',', $channel);
         $params['filename'] = basename($file);
         $params['file'] = fopen($file, 'r');
+        $params['thread_ts'] = $threadTs;
 
         return $this->client->send(
             Actions::ACTION_FILES_UPLOAD,
