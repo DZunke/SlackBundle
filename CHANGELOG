@@ -1,3 +1,8 @@
+SlackBundle v2.6.0
+==================
+- Feature: Support file upload api with multipart form data (by @pmishev)
+- Feature: Add support for threads in file upload api (by @pmishev)
+
 SlackBundle v2.5.0
 ==================
 - Feature: Removed symfony/symfony as required package by splitting requirements (by @makasim)
