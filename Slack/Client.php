@@ -27,11 +27,12 @@ class Client
 
     /**
      * @param string $action
-     * @param array $parameter
+     * @param array  $parameter
+     * @param bool   $multipart Whether to use multipart/form-data or the default application/x-www-form-urlencoded
      *
      * @return Response|bool
      */
-    public function send($action, array $parameter = [])
+    public function send($action, array $parameter = [], $multipart = false)
     {
         if (!$this->connection->isValid()) {
             return false;
@@ -51,7 +52,8 @@ class Client
         do {
             $response = $this->executeRequest(
                 $url,
-                $this->connection->getHttpMethod() === Request::METHOD_POST ? $parsedRequestParams : null
+                $this->connection->getHttpMethod() === Request::METHOD_POST ? $parsedRequestParams : null,
+                $multipart
             );
             $response = Response::parseGuzzleResponse($response, $action);
 
@@ -89,18 +91,36 @@ class Client
 
     /**
      * @param Uri $uri
-     * @param array $params form post values
+     * @param array $params    form post values
+     * @param bool  $multipart Whether to use multipart/form-data or the default application/x-www-form-urlencoded
      *
      * @return \GuzzleHttp\Psr7\Response
      */
-    protected function executeRequest(Uri $uri, array $params = null)
+    protected function executeRequest(Uri $uri, array $params = null, $multipart = false)
     {
         $guzzle = new GuzzleClient(['verify' => $this->connection->getVerifySsl()]);
+
+        if (null !== $params) {
+            if ($multipart) {
+                $multipartParams = [];
+                foreach ($params as $paramName => $paramValue) {
+                    $multipartParams[] = [
+                        'name'     => $paramName,
+                        'contents' => $paramValue,
+                    ];
+                }
+                $postParams = ['multipart' => $multipartParams];
+            } else {
+                $postParams = ['form_params' => $params];
+            }
+        } else {
+            $postParams = [];
+        }
 
         return $guzzle->request(
             $this->connection->getHttpMethod(),
             $uri,
-            null !== $params ? ['form_params' => $params] : []
+            $postParams
         );
     }
 }
