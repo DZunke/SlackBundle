@@ -1,4 +1,11 @@
-# Symfony SlackBundle [![License](https://poser.pugx.org/dzunke/slack-bundle/license.svg)](https://packagist.org/packages/dzunke/slack-bundle)
+## PROJECT ARCHIVED
+
+You may want to use the symfony notifier component which can also send messages to slack -> More Information here: https://symfony.com/doc/current/notifier.html
+
+
+---
+
+## Symfony SlackBundle [![License](https://poser.pugx.org/dzunke/slack-bundle/license.svg)](https://packagist.org/packages/dzunke/slack-bundle)
 
 [![Dependency Status](https://www.versioneye.com/user/projects/53f7cb30e09da3d0bf00047b/badge.svg)](https://www.versioneye.com/user/projects/53f7cb30e09da3d0bf00047b) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/12c02e49-a1a8-42f7-a213-71d4288fc75d/mini.png)](https://insight.sensiolabs.com/projects/12c02e49-a1a8-42f7-a213-71d4288fc75d) [![Latest Unstable Version](https://poser.pugx.org/dzunke/slack-bundle/v/unstable.svg)](https://packagist.org/packages/dzunke/slack-bundle) [![Latest Stable Version](https://poser.pugx.org/dzunke/slack-bundle/v/stable.svg)](https://packagist.org/packages/dzunke/slack-bundle)
 
